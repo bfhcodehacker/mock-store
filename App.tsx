@@ -1,45 +1,44 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import CartScreenStack from './src/stacks/CartStack';
+import HomeScreenStack from './src/stacks/HomeStack';
+import ScanScreenStack from './src/stacks/ScanStack';
+import Icon, { Ionicons } from "@react-native-vector-icons/ionicons";
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const Tab = createBottomTabNavigator();
 
+function RootStack() {
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused }) => {
+            let iconName;
+
+            if (route.name === 'HomeStack') {
+              iconName = focused ? 'home-sharp' : 'home-outline';
+            } else if (route.name === 'ScanStack') {
+              iconName = focused ? 'scan-sharp' : 'scan-outline';
+            } else if (route.name === 'CartStack') {
+              iconName = focused ? 'cart-sharp' : 'cart-outline';
+            }
+            return <Ionicons name={iconName as any} color='#077cff' size={20} />
+          },
+          headerShown: false
+        })}
+      >
+        <Tab.Screen name="HomeStack" component={HomeScreenStack} />
+        <Tab.Screen name="ScanStack" component={ScanScreenStack} />
+        <Tab.Screen name="CartStack" component={CartScreenStack} />
+      </Tab.Navigator>
   );
 }
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
+export default function App() {
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
