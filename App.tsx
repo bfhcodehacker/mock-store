@@ -4,7 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CartScreenStack from './src/stacks/CartStack';
 import HomeScreenStack from './src/stacks/HomeStack';
 import ScanScreenStack from './src/stacks/ScanStack';
-import Icon, { Ionicons } from "@react-native-vector-icons/ionicons";
+import { Ionicons, IoniconsIconName } from "@react-native-vector-icons/ionicons";
+
+import { store } from './src/app/store';
+import { Provider } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,30 +18,32 @@ function RootStack() {
           tabBarIcon: ({ focused }) => {
             let iconName;
 
-            if (route.name === 'HomeStack') {
+            if (route.name === 'Home') {
               iconName = focused ? 'home-sharp' : 'home-outline';
-            } else if (route.name === 'ScanStack') {
+            } else if (route.name === 'Scan') {
               iconName = focused ? 'scan-sharp' : 'scan-outline';
-            } else if (route.name === 'CartStack') {
+            } else if (route.name === 'Cart') {
               iconName = focused ? 'cart-sharp' : 'cart-outline';
             }
-            return <Ionicons name={iconName as any} color='#077cff' size={20} />
+            return <Ionicons name={iconName as IoniconsIconName} color='#077cff' size={20} />
           },
           headerShown: false
         })}
       >
-        <Tab.Screen name="HomeStack" component={HomeScreenStack} />
-        <Tab.Screen name="ScanStack" component={ScanScreenStack} />
-        <Tab.Screen name="CartStack" component={CartScreenStack} />
+        <Tab.Screen name="Home" component={HomeScreenStack} />
+        <Tab.Screen name="Scan" component={ScanScreenStack} />
+        <Tab.Screen name="Cart" component={CartScreenStack} />
       </Tab.Navigator>
   );
 }
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </Provider>
   )
 }
 
