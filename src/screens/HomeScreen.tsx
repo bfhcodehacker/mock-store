@@ -1,11 +1,30 @@
-import { Text, View } from 'react-native';
-import { MainStyles } from '../styles/MainStyles';
-import LinearGradient from 'react-native-linear-gradient';
+import { Image, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { GradientWrapper } from '../components/GradientWrapper';
+import { HomeStyles } from '../styles/HomeStyles';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { fetchCategories } from '../reducers/storeData';
+
+const titleBackground = require('../assets/images/home-title.jpeg');
 
 export const HomeScreen = () => {
+  const dispatch = useAppDispatch();
+  const store = useAppSelector((state) => state.storeData);
+
+  console.log('render home screen', store);
+
+  useEffect(() => {
+    if (!store.categories?.length) {
+      dispatch(fetchCategories());
+    }
+  }, []);
+
   return (
-    <LinearGradient style={MainStyles.main} colors={['#00008B', '#6e70f3ff']}>
-      <Text>Home</Text>
-    </LinearGradient>
+    <GradientWrapper>
+      <View style={HomeStyles.titleImageBox}>
+        <Image source={titleBackground} resizeMode='contain' style={HomeStyles.titleImage} />
+        <Text style={HomeStyles.titleText}>Mock App</Text>
+      </View>
+    </GradientWrapper>
   );
 }
