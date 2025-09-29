@@ -17,11 +17,13 @@ export const fetchCategories = createAsyncThunk(
 
 export interface StoreDataState {
   categories: Category[];
+  featuredCategories: Category[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 
 const initialState: StoreDataState = {
   categories: [],
+  featuredCategories: [],
   status: 'idle'
 }
 
@@ -39,7 +41,10 @@ export const storeDataSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.categories = action.payload;
+        if (action.payload?.length) {
+          state.categories = action.payload;
+          state.featuredCategories = action.payload.splice(0, 4);
+        }
         state.status = 'succeeded';
       })
       .addCase(fetchCategories.rejected, (state) => {
