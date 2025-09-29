@@ -1,5 +1,5 @@
 {
-  "name": "mockStore",
+  "name": "mock-store",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -52,6 +52,6 @@
     "node": ">=20"
   },
   "lint-staged": {
-    "**/*.ts": "tsc-files --noEmit"
+    "*.{ts,tsx}": "tsc-files --noEmit"
   }
 }
