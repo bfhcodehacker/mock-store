@@ -4,13 +4,12 @@ import { CategoriesScreen } from "../screens/Categories";
 import { ProductIndexScreen } from "../screens/ProductIndex";
 import { ProductDisplayScreen } from "../screens/ProductDisplay";
 import { Category } from "../types/category";
-import Ionicons from "@react-native-vector-icons/ionicons";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
   Categories: undefined;
   ProductIndex: { category: Category };
-  ProductDisplay: undefined;
+  ProductDisplay: { productId?: number, name?: string };
 };
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
@@ -31,8 +30,20 @@ const HomeScreenStack = () => {
     >
       <HomeStack.Screen name="HomeScreen" options={{headerShown: false}} component={HomeScreen} />
       <HomeStack.Screen name="Categories" component={CategoriesScreen} />
-      <HomeStack.Screen name="ProductIndex" component={ProductIndexScreen} />
-      <HomeStack.Screen name="ProductDisplay" component={ProductDisplayScreen} />
+      <HomeStack.Screen
+        name="ProductIndex"
+        component={ProductIndexScreen}
+        options={({ route }) => ({
+          title: route.params?.category?.name || 'Product Index'
+        })}
+      />
+      <HomeStack.Screen
+        name="ProductDisplay"
+        component={ProductDisplayScreen}
+        options={({ route }) => ({
+          title: route.params?.name || 'Product Display'
+        })}
+      />
     </HomeStack.Navigator>
   );
 }
