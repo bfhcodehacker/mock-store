@@ -12,3 +12,7 @@ and eventually RTK Query for product fetching -
 https://redux-toolkit.js.org/rtk-query/overview
 
 I am also planning on implementing a barcode scanner and geolocator
+
+app icon attribution: 
+
+App icon created by flatart_icons - Flaticon
