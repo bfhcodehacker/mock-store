@@ -12,22 +12,21 @@ export const styles = StyleSheet.create({
     marginBottom: 15
   },
   container: {
-    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: '#fff',
+    borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     padding: '5%',
     paddingBottom: '3%',
-    width: '100%',
-    borderRadius: 20,
-    elevation: 5
+    width: '100%'
   },
   box: {
     width: '40%',
     padding: 10,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#00008B',
+    backgroundColor: '#fff',
     borderRadius: 5,
     marginBottom: 10
   },
