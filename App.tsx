@@ -32,12 +32,16 @@ function RootStack() {
       >
         <Tab.Screen name="Home" component={HomeScreenStack} />
         <Tab.Screen name="Scan" component={ScanScreenStack} />
-        <Tab.Screen name="Cart" component={CartScreenStack} />
+        <Tab.Screen name="Cart"
+          component={CartScreenStack}
+          options={{ tabBarBadgeStyle: { color: '#fff', backgroundColor: '#00008B'}}}
+        />
       </Tab.Navigator>
   );
 }
 
 export default function App() {
+
   return (
     <Provider store={store}>
       <NavigationContainer>
