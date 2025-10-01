@@ -50,3 +50,8 @@ export interface Review {
   reviewerName?:  string;
   reviewerEmail?: string;
 }
+
+export interface ProductDetail {
+  title: string;
+  text?: any;
+}
