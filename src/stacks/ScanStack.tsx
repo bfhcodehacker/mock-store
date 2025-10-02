@@ -5,8 +5,19 @@ const ScanStack = createNativeStackNavigator();
 
 const ScanScreenStack = () => {
   return (
-    <ScanStack.Navigator>
-      <ScanStack.Screen name="Scan" component={ScanScreen} />
+    <ScanStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#00008B'
+        },
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: '#fff'
+        },
+        headerTintColor: '#fff'
+      }}        
+    >
+      <ScanStack.Screen name="ScanScreen" component={ScanScreen} options={{ title: 'Scan' }}/>
     </ScanStack.Navigator>
   );
 }
