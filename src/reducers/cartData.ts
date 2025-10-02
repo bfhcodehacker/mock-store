@@ -37,7 +37,9 @@ export const cartDataSlice = createSlice({
       state.cartCount += action.payload.qty;
     },
     removeFromCart: (state, action: PayloadAction<RemoveProductFromCart>) => {
-      state.items.filter(item => { return item.id !== action.payload.productId });
+      const indexToRemove = state.items.findIndex(item => item.id === action.payload.productId);
+      state.cartCount -= state.items[indexToRemove].qty;
+      state.items.splice(indexToRemove, 1);
     },
     incrementCartQty: (state, action: PayloadAction<IncrementCartItemQty>) => {
       state.items.map(item => {

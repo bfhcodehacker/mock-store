@@ -1,4 +1,20 @@
 import { Product, ProductDetail } from "../types/product";
+import { CartProduct } from "../types/cartTypes/cartTypes";
+
+export const calculateCartTotal = (products?: CartProduct[]): string => {
+  if (!products?.length) {
+    return '0.00';
+  }
+
+  let total = 0;
+  products.forEach(product => {
+    if (product.price && product.qty) {
+      total += product.price * product.qty;
+    }
+  });
+
+  return total.toFixed(2);
+}
 
 export const formatPDPDetails = (product?: Product) => {
   const productData: ProductDetail[] = [];

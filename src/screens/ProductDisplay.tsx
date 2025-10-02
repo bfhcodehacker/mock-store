@@ -1,6 +1,6 @@
 import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { GradientWrapper } from '../components/GradientWrapper';
 import { useGetProductQuery } from '../reducers/productData';
 import { styles } from '../styles/ProductDisplay';
@@ -9,6 +9,7 @@ import { PDPDetails } from '../components/PDP/PDPDetails';
 import { formatPDPDetails } from '../lib/helpers';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { addToCart } from '../reducers/cartData';
+import { ProductDetail } from '../types/product';
 
 interface ProductDisplayProps {
   route?: RouteProp<{ params: { productId: string } }, 'params'>;
@@ -19,7 +20,7 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
   // fyi, I know I don't need to make this request as all product data is sent with categories
   // request. however, I wanted to add another rtk query request as other apis will be different
   const { data, isLoading } = useGetProductQuery(productId);
-  const pdpDetails = formatPDPDetails(data);
+  const pdpDetails: ProductDetail[] = useMemo(() => formatPDPDetails(data), [data]);
   const dispatch = useAppDispatch();
   const cart = useAppSelector(state => state.cartData);
 
@@ -82,9 +83,11 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
         </View>
       )}
       {showAddedToCartModal && <View style={styles.modalBackdrop} />}
-      <TouchableOpacity onPress={addProductToCart} style={styles.addToCartBtn}>
-        <Text style={styles.addToCartText}>Add To Cart</Text>
-      </TouchableOpacity>
+      {!isLoading && !!data && (
+        <TouchableOpacity onPress={addProductToCart} style={styles.addToCartBtn}>
+          <Text style={styles.addToCartText}>Add To Cart</Text>
+        </TouchableOpacity>
+      )}
     </GradientWrapper>
   );
 }
