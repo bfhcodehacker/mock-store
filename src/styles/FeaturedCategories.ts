@@ -4,12 +4,17 @@ export const styles = StyleSheet.create({
   outerContainer: {
     marginTop: 30,
     marginHorizontal: '5%',
-    width: '90%'
+    width: '90%',
+    marginBottom: 20
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10
   },
   titleText: {
     fontSize: 20,
-    color: 'white',
-    marginBottom: 15
+    color: 'white'
   },
   container: {
     borderWidth: 2,
@@ -40,7 +45,7 @@ export const styles = StyleSheet.create({
     color: '#00008B'
   },
   shopAllLink: {
-    paddingVertical: 15
+
   },
   shopAllText: {
     fontSize: 20,
