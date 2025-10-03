@@ -11,7 +11,10 @@ https://redux-toolkit.js.org/
 and eventually RTK Query for product fetching - 
 https://redux-toolkit.js.org/rtk-query/overview
 
-I am also planning on implementing a barcode scanner and geolocator
+
+Scanner Barcodes can be found in this PR:
+https://github.com/bfhcodehacker/mock-store/pull/13
+
 
 app icon attribution: 
 
