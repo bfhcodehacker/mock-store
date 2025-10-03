@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Category } from "../types/category";
+import { Product } from "../types/product";
 
 export const fetchCategories = createAsyncThunk(
   'categories/fetchCategories',
@@ -15,15 +16,31 @@ export const fetchCategories = createAsyncThunk(
   }
 );
 
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async () => {
+    try {
+      const response = await axios.get('https://dummyjson.com/products');
+      return response.data;
+    } catch (err) {
+      return 'Error fetching products';
+    }
+  }
+)
+
 export interface StoreDataState {
   categories: Category[];
   featuredCategories: Category[];
+  featuredProducts: Product[];
+  cartProducts: Product[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 
 const initialState: StoreDataState = {
   categories: [],
   featuredCategories: [],
+  featuredProducts: [],
+  cartProducts: [],
   status: 'idle'
 }
 
@@ -49,6 +66,12 @@ export const storeDataSlice = createSlice({
       })
       .addCase(fetchCategories.rejected, (state) => {
         state.status = 'failed';
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        if (action.payload?.products?.length) {
+          state.featuredProducts = action.payload.products.slice(0, 8);
+          state.cartProducts = action.payload.products.slice(-8);
+        }
       })
   },
 });
