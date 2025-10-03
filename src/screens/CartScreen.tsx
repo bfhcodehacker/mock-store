@@ -5,19 +5,23 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { CartItem } from '../components/CartItem';
 import {
+  addToCart,
   removeFromCart,
   incrementCartQty,
   decrementCartQty
 } from '../reducers/cartData';
 import { CartProduct } from '../types/cartTypes/cartTypes';
+import { Product } from '../types/product';
 import { styles } from '../styles/Cart';
 import { calculateCartTotal } from '../lib/helpers';
 import { CartStackParamList } from '../stacks/CartStack';
+import { FeaturedProducts } from '../components/featuredProducts';
 
 export const CartScreen = () => {
   const dispatch = useAppDispatch();
   const cartCount = useAppSelector(state => state.cartData.cartCount);
   const items = useAppSelector(state => state.cartData.items);
+  const featuredProducts = useAppSelector((state) => state.storeData.cartProducts);
   const navigation = useNavigation<NativeStackNavigationProp<CartStackParamList>>();
 
   useEffect(() => {
@@ -56,17 +60,21 @@ export const CartScreen = () => {
     navigation.navigate('Home' as any);
   };
 
+  const addToCartPress = (product: Product) => {
+    dispatch(addToCart({product, qty: 1}));
+  }
+
   return (
-    <View style={styles.main}>
+    <ScrollView style={styles.main}>
       <View style={styles.innerContainer}>
         {items.length ? (
-          <ScrollView>
+          <View>
             <View style={styles.cartHeader}>
               <Text style={styles.cartCount}>Item Count: {cartCount}</Text>
               <Text style={styles.cartHeaderTotal}>Total: ${cartTotal}</Text>
             </View>
             {items.map(renderCartItem)}
-          </ScrollView>
+          </View>
         ) : (
           <View style={styles.emptyCart}>
             <Text style={styles.emptyCartText}>There are no items in the cart</Text>
@@ -79,6 +87,16 @@ export const CartScreen = () => {
           </View>
         )}
       </View>
-    </View>
+      {!!featuredProducts.length && (
+        <FeaturedProducts
+          title={'You Might Also Like'}
+          addToCart={addToCartPress}
+          products={featuredProducts}
+          titleStyle={{color: '#00008b'}}
+          descStyle={{color: '#00008b'}}
+          boxStyle={{borderColor: '#00008b'}}
+        />
+      )}
+    </ScrollView>
   );
 }

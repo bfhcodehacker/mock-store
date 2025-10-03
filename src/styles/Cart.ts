@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
   },
   innerContainer: {
     width: '90%',
-    margin: '5%'
+    margin: '5%',
+    justifyContent: 'space-between'
   },
   cartHeader: {
     flexDirection: 'row',
