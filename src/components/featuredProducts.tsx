@@ -4,8 +4,10 @@ import { styles } from "../styles/featuredProducts";
 
 interface FeaturedProductsProps {
   products: Product[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product) => () => void;
+  navigateToProduct: (product: Product) => () => void;
   title: string;
+  cartFeaturedProducts?: boolean;
   containerStyle?: ViewStyle;
   titleStyle?: TextStyle;
   descStyle?: TextStyle;
@@ -19,11 +21,8 @@ interface ListItem {
 const defaultImage = require('../assets/images/default-product.webp');
 
 export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
-  products, addToCart, title, titleStyle, containerStyle, descStyle, boxStyle
+  products, addToCart, title, titleStyle, containerStyle, descStyle, boxStyle, navigateToProduct
 }) => {
-  const addItemToCart = (product: Product) => () => {
-    addToCart(product);
-  }
 
   const renderProduct = (item: ListItem): React.JSX.Element => {
     const product = item.item;
@@ -31,9 +30,11 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
 
     return (
       <View style={[styles.productBox, boxStyle]}>
-        <Image source={imageSrc} style={styles.image} resizeMode='cover' />
-        <Text style={[styles.productTitle, descStyle]} numberOfLines={2}>{product.title}</Text>
-        <TouchableOpacity onPress={addItemToCart(product)} style={styles.addToCartBtn}>
+        <TouchableOpacity onPress={navigateToProduct(product)} style={styles.navLink}>
+          <Image source={imageSrc} style={styles.image} resizeMode='cover' />
+          <Text style={[styles.productTitle, descStyle]} numberOfLines={2}>{product.title}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={addToCart(product)} style={styles.addToCartBtn}>
           <Text style={styles.addToCartText}>Add To Cart</Text>
         </TouchableOpacity>
       </View>

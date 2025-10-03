@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 5
   },
+  navLink: {
+    alignItems: 'center'
+  },
   image: {
     height: 80,
     width: 80,

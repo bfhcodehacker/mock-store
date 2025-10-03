@@ -31,15 +31,19 @@ export const HomeScreen = () => {
 
   const onCategoryPress = (category: Category) => () => {
     navigation.navigate('ProductIndex', { category });
-  }
+  };
 
   const onShopAllPress = () => {
     navigation.navigate('Categories');
-  }
+  };
 
-  const addToCartPress = (product: Product) => {
+  const addToCartPress = (product: Product) => () => {
     dispatch(addToCart({product, qty: 1}));
-  }
+  };
+
+  const onProductNavigation = (product: Product) => () => {
+    navigation.navigate('ProductDisplay', { productId: product.id, name: product.title });
+  };
 
   return (
     <GradientWrapper>
@@ -62,6 +66,7 @@ export const HomeScreen = () => {
             title={'Featured Products'}
             addToCart={addToCartPress}
             products={featuredProducts}
+            navigateToProduct={onProductNavigation}
           />
         )}
       </ScrollView>

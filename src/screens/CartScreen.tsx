@@ -60,9 +60,16 @@ export const CartScreen = () => {
     navigation.navigate('Home' as any);
   };
 
-  const addToCartPress = (product: Product) => {
+  const addToCartPress = (product: Product) => () => {
     dispatch(addToCart({product, qty: 1}));
-  }
+  };
+
+  const navigateToProduct = (product: Product) => () => {
+    navigation.navigate('Home' as any, {
+      screen: 'ProductDisplay', 
+      params: { productId: product.id, name: product.title }
+    });
+  };
 
   return (
     <ScrollView style={styles.main}>
@@ -91,6 +98,7 @@ export const CartScreen = () => {
         <FeaturedProducts
           title={'You Might Also Like'}
           addToCart={addToCartPress}
+          navigateToProduct={navigateToProduct}
           products={featuredProducts}
           titleStyle={{color: '#00008b'}}
           descStyle={{color: '#00008b'}}
