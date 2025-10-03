@@ -1,7 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScanScreen } from "../screens/ScanScreen";
 
-const ScanStack = createNativeStackNavigator();
+export type ScanStackParamList = {
+  ScanScreen: undefined;
+};
+
+const ScanStack = createNativeStackNavigator<ScanStackParamList>();
 
 const ScanScreenStack = () => {
   return (
