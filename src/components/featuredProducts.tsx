@@ -8,6 +8,8 @@ interface FeaturedProductsProps {
   title: string;
   containerStyle?: ViewStyle;
   titleStyle?: TextStyle;
+  descStyle?: TextStyle;
+  boxStyle?: ViewStyle;
 }
 
 interface ListItem {
@@ -16,7 +18,9 @@ interface ListItem {
 }
 const defaultImage = require('../assets/images/default-product.webp');
 
-export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products, addToCart, title}) => {
+export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
+  products, addToCart, title, titleStyle, containerStyle, descStyle, boxStyle
+}) => {
   const addItemToCart = (product: Product) => () => {
     addToCart(product);
   }
@@ -26,9 +30,9 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products, ad
     const imageSrc = product.thumbnail ? { uri: product.thumbnail } : defaultImage;
 
     return (
-      <View style={styles.productBox}>
+      <View style={[styles.productBox, boxStyle]}>
         <Image source={imageSrc} style={styles.image} resizeMode='cover' />
-        <Text style={styles.productTitle} numberOfLines={2}>{product.title}</Text>
+        <Text style={[styles.productTitle, descStyle]} numberOfLines={2}>{product.title}</Text>
         <TouchableOpacity onPress={addItemToCart(product)} style={styles.addToCartBtn}>
           <Text style={styles.addToCartText}>Add To Cart</Text>
         </TouchableOpacity>
@@ -37,8 +41,8 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products, ad
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+    <View style={[styles.container, containerStyle]}>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
       <View style={styles.productContainer}>
         <FlatList
           data={products}
