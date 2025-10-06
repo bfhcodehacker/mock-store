@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
 import { GradientWrapper } from '../components/GradientWrapper';
@@ -10,6 +10,7 @@ import { formatPDPDetails } from '../lib/helpers';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { addToCart } from '../reducers/cartData';
 import { ProductDetail } from '../types/product';
+import { ATCModal } from '../components/ATCModal';
 
 interface ProductDisplayProps {
   route?: RouteProp<{ params: { productId: string } }, 'params'>;
@@ -75,14 +76,8 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
         </ScrollView>
       )}
       {showAddedToCartModal && (
-        <View style={styles.addedToCartModal}>
-          <Text style={styles.addedToCartModalText}>Item added to cart!</Text>
-          <TouchableOpacity onPress={closeAddedToCartModal} style={styles.closeModalBtn}>
-            <Text style={styles.closeModalBtnText}>Close</Text>
-          </TouchableOpacity>
-        </View>
+        <ATCModal product={data} onClose={closeAddedToCartModal} />
       )}
-      {showAddedToCartModal && <View style={styles.modalBackdrop} />}
       {!isLoading && !!data && (
         <TouchableOpacity onPress={addProductToCart} style={styles.addToCartBtn}>
           <Text style={styles.addToCartText}>Add To Cart</Text>
