@@ -1,5 +1,5 @@
 import { ActivityIndicator, Image, ScrollView, Text, View } from 'react-native';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GradientWrapper } from '../components/GradientWrapper';
 import { HomeStyles } from '../styles/HomeStyles';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
@@ -13,6 +13,7 @@ import { HomeStackParamList } from '../stacks/HomeStack';
 import { FeaturedProducts } from '../components/featuredProducts';
 import { addToCart } from '../reducers/cartData';
 import { Product } from '../types/product';
+import { ATCModal } from '../components/ATCModal';
 
 const titleBackground = require('../assets/images/home-title.jpeg');
 
@@ -21,6 +22,7 @@ export const HomeScreen = () => {
   const featuredCategories = useAppSelector((state) => state.storeData.featuredCategories);
   const featuredProducts = useAppSelector((state) => state.storeData.featuredProducts);
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const [ productAddedToCart, setProductAddedToCart ] = useState<Product | null>(null);
 
   useEffect(() => {
     if (!featuredCategories?.length) {
@@ -39,7 +41,12 @@ export const HomeScreen = () => {
 
   const addToCartPress = (product: Product) => () => {
     dispatch(addToCart({product, qty: 1}));
+    setProductAddedToCart(product);
   };
+
+  const closeATCModal = () => {
+    setProductAddedToCart(null);
+  }
 
   const onProductNavigation = (product: Product) => () => {
     navigation.navigate('ProductDisplay', { productId: product.id, name: product.title });
@@ -70,6 +77,9 @@ export const HomeScreen = () => {
           />
         )}
       </ScrollView>
+      {!!productAddedToCart && (
+        <ATCModal product={productAddedToCart} onClose={closeATCModal} />
+      )}
     </GradientWrapper>
   );
 }

@@ -1,5 +1,5 @@
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -16,6 +16,7 @@ import { styles } from '../styles/Cart';
 import { calculateCartTotal } from '../lib/helpers';
 import { CartStackParamList } from '../stacks/CartStack';
 import { FeaturedProducts } from '../components/featuredProducts';
+import { ATCModal } from '../components/ATCModal';
 
 export const CartScreen = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ export const CartScreen = () => {
   const items = useAppSelector(state => state.cartData.items);
   const featuredProducts = useAppSelector((state) => state.storeData.cartProducts);
   const navigation = useNavigation<NativeStackNavigationProp<CartStackParamList>>();
+  const [productAddedToCart, setProductAddedToCart] = useState<Product | null>(null);
 
   useEffect(() => {
     navigation.getParent()?.setOptions({
@@ -62,7 +64,12 @@ export const CartScreen = () => {
 
   const addToCartPress = (product: Product) => () => {
     dispatch(addToCart({product, qty: 1}));
+    setProductAddedToCart(product);
   };
+
+  const closeATCModal = () => {
+    setProductAddedToCart(null);
+  }
 
   const navigateToProduct = (product: Product) => () => {
     navigation.navigate('Home' as any, {
@@ -104,6 +111,9 @@ export const CartScreen = () => {
           descStyle={{color: '#00008b'}}
           boxStyle={{borderColor: '#00008b'}}
         />
+      )}
+      {!!productAddedToCart && (
+        <ATCModal onClose={closeATCModal} product={productAddedToCart} />
       )}
     </ScrollView>
   );

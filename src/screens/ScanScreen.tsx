@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/Scan';
 import { Camera, useCameraDevice, useCameraPermission, useCodeScanner } from 'react-native-vision-camera';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
@@ -10,6 +10,8 @@ import { useLazyGetProductQuery } from '../reducers/productData';
 import { addToCart } from '../reducers/cartData';
 import { useAppDispatch } from '../app/hooks';
 import { Product } from '../types/product';
+import { ATCModal } from '../components/ATCModal';
+import { Modal } from '../components/Modal';
 
 export const ScanScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ScanStackParamList>>();
@@ -19,14 +21,13 @@ export const ScanScreen = () => {
   const dispatch = useAppDispatch();
 
   const [showProductModal, setShowProductModal] = useState(false);
+  const [showATCModal, setShowATCModal] = useState(false);
 
   const isActive = isFocused && appState === "active";
   const device = useCameraDevice('back');
 
   const [trigger, result] = useLazyGetProductQuery();
   const { data, isError, isLoading, isFetching } = result;
-
-  console.log('scanner screen', data, isError, isLoading, isFetching);
 
   const continueShopping = () => {
     navigation.navigate('Home' as any);
@@ -39,6 +40,11 @@ export const ScanScreen = () => {
   const addProductToCart = (product: Product) => () => {
     dispatch(addToCart({product, qty: 1}));
     closeProductModal();
+    setShowATCModal(true);
+  }
+
+  const closeATCModal = () => {
+    setShowATCModal(false);
   }
 
   const codeScanner = useCodeScanner({
@@ -53,24 +59,64 @@ export const ScanScreen = () => {
     }
   })
 
+  const renderModalContent = () => {
+    if (isLoading || isFetching) {
+      return (
+        <View style={styles.modalBox}>
+          <View style={styles.activityArea}>
+            <ActivityIndicator size='large' />
+          </View>
+          <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
+            <Text style={styles.closeProductModalBtnText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else if (!data || isError) {
+      return (
+        <View style={[styles.modalBox, styles.errorBox]}>
+          <Text style={[styles.productModalText, styles.errorText]}>Error Loading Product</Text>
+          <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
+            <Text style={styles.closeProductModalBtnText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.modalBox}>
+          <Text style={styles.productModalText}>Scanned Item:</Text>
+          <Text style={styles.productModalText}>{data?.title}</Text>
+          {data?.thumbnail && (
+            <Image source={{ uri: data.thumbnail }} style={styles.productImage} />
+          )}
+          <TouchableOpacity onPress={addProductToCart(data)} style={styles.atcProductModalBtn}>
+            <Text style={styles.closeProductModalBtnText}>Add To Cart</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
+            <Text style={styles.closeProductModalBtnText}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
+
   if (!hasPermission) {
     return (
-    <View style={styles.main}>
-      <View style={styles.cameraNotReady}>
-        <Text style={[styles.errorMessage, styles.notReadyMargin]}>
-          Please allow camera access to scan product barcodes
-        </Text>
-        <TouchableOpacity onPress={requestPermission} style={styles.scanBtn}>
-          <Text style={styles.scanBtnText}>Allow Camera Access</Text>
-        </TouchableOpacity>
-      </View>
-    </View>      
+      <View style={styles.main}>
+        <View style={styles.cameraNotReady}>
+          <Text style={[styles.errorMessage, styles.notReadyMargin]}>
+            Please allow camera access to scan product barcodes
+          </Text>
+          <TouchableOpacity onPress={requestPermission} style={styles.scanBtn}>
+            <Text style={styles.scanBtnText}>Allow Camera Access</Text>
+          </TouchableOpacity>
+        </View>
+      </View>      
     );
   }
 
   if (!device) {
     return (
-    <View style={styles.main}>
+      <View style={styles.main}>
         <View style={styles.cameraNotReady}>
           <Text style={[styles.errorMessage, styles.notReadyMargin]}>
             There was an error accessing the camera
@@ -92,31 +138,10 @@ export const ScanScreen = () => {
         codeScanner={codeScanner}
       />
       {showProductModal && (
-        <View style={styles.productModal}>
-          {isLoading ? (
-            <ActivityIndicator size='large' />
-          ) : (
-            !data || isError ? (
-              <View>
-                <Text style={styles.productModalText}>Error Loading Product</Text>
-                <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
-                  <Text style={styles.closeProductModalBtnText}>Close</Text>
-                </TouchableOpacity>
-              </View>
-            ) : (
-              <View>
-                <Text style={styles.productModalText}>Scanned Item:</Text>
-                <Text style={styles.productModalText}>{data.title}</Text>
-                <TouchableOpacity onPress={addProductToCart(data)} style={styles.closeProductModalBtn}>
-                  <Text style={styles.closeProductModalBtnText}>Add To Cart</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
-                  <Text style={styles.closeProductModalBtnText}>Close</Text>
-                </TouchableOpacity>
-              </View>
-            )
-          )}
-        </View>
+        <Modal content={renderModalContent()} />
+      )}
+      {showATCModal && (
+        <ATCModal product={data} onClose={closeATCModal} />
       )}
     </View>
   );

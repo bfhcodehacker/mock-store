@@ -33,6 +33,20 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   },
+  modalBox: {
+    alignItems: 'center',
+    height: 330
+  },
+  activityArea: {
+    height: 200,
+    justifyContent: 'center'
+  },
+  errorBox: {
+    justifyContent: 'space-around'
+  },
+  errorText: {
+    marginVertical: 40
+  },
   productModal: {
     zIndex: 6,
     position: 'absolute',
@@ -50,8 +64,20 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold'
   },
+  productImage: {
+    height: 100,
+    width: 100,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  atcProductModalBtn: {
+    width: 150,
+    backgroundColor: '#00008B',
+    borderRadius: 5,
+    marginBottom: 20
+  },
   closeProductModalBtn: {
-   width: '100%',
+    width: 150,
     backgroundColor: '#00008B',
     borderRadius: 5
   },
