@@ -1,6 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Product } from "../types/product";
 import { styles } from '../styles/ProductIndex';
+import RatingStars from './RatingStars';
 
 interface ProductIndexProductProps {
   product: Product;
@@ -11,6 +12,7 @@ const defaultImage = require('../assets/images/default-product.webp');
 
 export const ProductIndexProduct: React.FC<ProductIndexProductProps> = ({ product, onPress }) => {
   const imageSrc = product?.thumbnail ? { uri: product.thumbnail } : defaultImage;
+
   return (
     <TouchableOpacity style={styles.productBox} onPress={onPress(product)}>
       <Image source={imageSrc} style={styles.thumbnail} resizeMode='cover' />
@@ -20,7 +22,12 @@ export const ProductIndexProduct: React.FC<ProductIndexProductProps> = ({ produc
         </View>
         <View style={styles.productInfoBox}>
           <Text style={styles.productPrice}>Price: ${product.price}</Text>
-          <Text style={styles.productRating}>Rating: {product.rating}</Text>
+          {product.rating && (
+            <View style={styles.productRatingBox}>
+              <Text style={styles.productRating}>Rating: </Text>
+              <RatingStars rating={product.rating} />
+            </View>
+          )}
         </View>
       </View>
     </TouchableOpacity>

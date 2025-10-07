@@ -60,7 +60,7 @@ export const storeDataSlice = createSlice({
       .addCase(fetchCategories.fulfilled, (state, action) => {
         if (action.payload?.length) {
           state.categories = action.payload;
-          state.featuredCategories = action.payload.splice(0, 4);
+          state.featuredCategories = action.payload.slice(0, 4);
         }
         state.status = 'succeeded';
       })
