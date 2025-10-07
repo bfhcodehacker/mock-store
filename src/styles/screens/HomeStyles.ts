@@ -3,7 +3,7 @@ import { cursiveFont } from "../../constants/fonts";
 
 export const HomeStyles = StyleSheet.create({
   titleImageBox: {
-    marginTop: '15%',
+    marginTop: 10,
     width: '90%',
     height: 200,
     marginHorizontal: '5%',

@@ -14,6 +14,7 @@ import { FeaturedProducts } from '../components/featuredProducts';
 import { addToCart } from '../reducers/cartData';
 import { Product } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
+import { HomeHeader } from '../components/HomeHeader';
 
 const titleBackground = require('../assets/images/home-title.jpeg');
 
@@ -55,6 +56,7 @@ export const HomeScreen = () => {
   return (
     <GradientWrapper>
       <ScrollView>
+        <HomeHeader />
         <View style={HomeStyles.titleImageBox}>
           <Image source={titleBackground} resizeMode='contain' style={HomeStyles.titleImage} />
           <Text style={HomeStyles.titleText}>Mock App</Text>
