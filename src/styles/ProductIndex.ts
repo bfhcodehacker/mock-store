@@ -36,6 +36,9 @@ export const styles = StyleSheet.create({
     color: '#00008B',
     fontSize: 14
   },
+  productRatingBox: {
+    flexDirection: 'row'
+  },
   productRating: {
     color: '#00008B',
     fontSize: 14
