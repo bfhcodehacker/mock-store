@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
-import { styles } from '../../styles/PDPDetails';
+import { styles } from '../../styles/components/PDPDetails';
 import Ionicons from '@react-native-vector-icons/ionicons';
 
 interface PDPDetailsProps {

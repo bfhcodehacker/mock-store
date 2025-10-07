@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../styles/CartItem";
+import { styles } from "../styles/components/CartItem";
 import { CartProduct } from "../types/cartTypes/cartTypes";
 import Ionicons from "@react-native-vector-icons/ionicons";
 

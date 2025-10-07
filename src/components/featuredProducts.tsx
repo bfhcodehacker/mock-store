@@ -1,6 +1,6 @@
 import { View, Text, ViewStyle, TextStyle, FlatList, Image, TouchableOpacity } from "react-native"
 import { Product } from "../types/product"
-import { styles } from "../styles/featuredProducts";
+import { styles } from "../styles/components/featuredProducts";
 
 interface FeaturedProductsProps {
   products: Product[];

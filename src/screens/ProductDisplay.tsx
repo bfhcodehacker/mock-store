@@ -3,7 +3,7 @@ import { RouteProp } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
 import { GradientWrapper } from '../components/GradientWrapper';
 import { useGetProductQuery } from '../reducers/productData';
-import { styles } from '../styles/ProductDisplay';
+import { styles } from '../styles/screens/ProductDisplay';
 import { ImageCarousel } from '../components/PDP/ImageCarousel';
 import { PDPDetails } from '../components/PDP/PDPDetails';
 import { formatPDPDetails } from '../lib/helpers';

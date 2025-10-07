@@ -1,7 +1,7 @@
 import { ActivityIndicator, Image, ScrollView, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { GradientWrapper } from '../components/GradientWrapper';
-import { HomeStyles } from '../styles/HomeStyles';
+import { HomeStyles } from '../styles/screens/HomeStyles';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { fetchCategories, fetchProducts } from '../reducers/storeData';
 

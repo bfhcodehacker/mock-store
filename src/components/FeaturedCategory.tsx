@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, ViewStyle } from "react-native";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { Category } from "../types/category";
 import { categoryIcons } from "../constants/categoryIcons";
-import { styles } from "../styles/FeaturedCategories";
+import { styles } from "../styles/components/FeaturedCategories";
 
 interface FeaturedCategoryProps {
   category: Category;

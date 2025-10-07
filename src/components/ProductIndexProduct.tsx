@@ -1,6 +1,6 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Product } from "../types/product";
-import { styles } from '../styles/ProductIndex';
+import { styles } from '../styles/screens/ProductIndex';
 import RatingStars from './RatingStars';
 
 interface ProductIndexProductProps {

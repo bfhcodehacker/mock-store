@@ -12,7 +12,7 @@ import {
 } from '../reducers/cartData';
 import { CartProduct } from '../types/cartTypes/cartTypes';
 import { Product } from '../types/product';
-import { styles } from '../styles/Cart';
+import { styles } from '../styles/screens/Cart';
 import { calculateCartTotal } from '../lib/helpers';
 import { CartStackParamList } from '../stacks/CartStack';
 import { FeaturedProducts } from '../components/featuredProducts';

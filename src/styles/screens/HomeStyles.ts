@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { cursiveFont } from "../constants/fonts";
+import { cursiveFont } from "../../constants/fonts";
 
 export const HomeStyles = StyleSheet.create({
   titleImageBox: {

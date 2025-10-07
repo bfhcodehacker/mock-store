@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HomeStackParamList } from '../stacks/HomeStack';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { styles } from '../styles/Categories';
+import { styles } from '../styles/screens/Categories';
 
 export const CategoriesScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
