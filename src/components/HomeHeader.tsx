@@ -8,16 +8,8 @@ import { HomeStackParamList } from '../stacks/HomeStack';
 export const HomeHeader: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
-  const accountPress = () => {
-    console.log('account pressed');
-    navigation.navigate('Account');
-  }
-
   return (
     <View style={styles.headerBox}>
-      <TouchableOpacity onPress={accountPress}>
-        <Ionicons name='person-circle-sharp' size={40} color='#fff'/>
-      </TouchableOpacity>
       <Text style={styles.welcomeText}>Welcome!</Text>
     </View>
   );
