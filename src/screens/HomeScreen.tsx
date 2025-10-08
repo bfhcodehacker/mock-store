@@ -1,7 +1,7 @@
 import { ActivityIndicator, Image, ScrollView, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { GradientWrapper } from '../components/GradientWrapper';
-import { HomeStyles } from '../styles/HomeStyles';
+import { HomeStyles } from '../styles/screens/HomeStyles';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { fetchCategories, fetchProducts } from '../reducers/storeData';
 
@@ -14,6 +14,7 @@ import { FeaturedProducts } from '../components/featuredProducts';
 import { addToCart } from '../reducers/cartData';
 import { Product } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
+import { HomeHeader } from '../components/HomeHeader';
 
 const titleBackground = require('../assets/images/home-title.jpeg');
 
@@ -55,6 +56,7 @@ export const HomeScreen = () => {
   return (
     <GradientWrapper>
       <ScrollView>
+        <HomeHeader />
         <View style={HomeStyles.titleImageBox}>
           <Image source={titleBackground} resizeMode='contain' style={HomeStyles.titleImage} />
           <Text style={HomeStyles.titleText}>Mock App</Text>

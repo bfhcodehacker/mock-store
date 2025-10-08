@@ -1,6 +1,6 @@
 import { Image, Text, View } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
-import { styles } from "../../styles/ImageCarousel";
+import { styles } from "../../styles/components/ImageCarousel";
  
 interface ImageCarouselProps {
   images?: string[];

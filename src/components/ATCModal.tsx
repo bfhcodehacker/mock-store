@@ -1,6 +1,6 @@
 import { Image, TouchableOpacity, Text, View } from 'react-native';
 import { Product } from "../types/product";
-import { styles } from '../styles/ATCModal';
+import { styles } from '../styles/components/ATCModal';
 
 interface ATCModalProps {
   product?: Product;

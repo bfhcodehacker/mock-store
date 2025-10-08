@@ -6,7 +6,7 @@ import { RouteProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
 import { ProductIndexProduct } from '../components/ProductIndexProduct';
-import { styles } from '../styles/ProductIndex';
+import { styles } from '../styles/screens/ProductIndex';
 import { Product } from '../types/product';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../stacks/HomeStack';

@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Category } from '../types/category';
-import { styles } from '../styles/FeaturedCategories';
+import { styles } from '../styles/components/FeaturedCategories';
 import { FeaturedCategory } from './FeaturedCategory';
 
 interface FeaturedCategoriesProps {

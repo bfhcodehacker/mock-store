@@ -28,22 +28,24 @@ const HomeScreenStack = () => {
         headerTintColor: '#fff'
       }}
     >
-      <HomeStack.Screen name="HomeScreen" options={{headerShown: false}} component={HomeScreen} />
-      <HomeStack.Screen name="Categories" component={CategoriesScreen} />
-      <HomeStack.Screen
-        name="ProductIndex"
-        component={ProductIndexScreen}
-        options={({ route }) => ({
-          title: route.params?.category?.name || 'Product Index'
-        })}
-      />
-      <HomeStack.Screen
-        name="ProductDisplay"
-        component={ProductDisplayScreen}
-        options={({ route }) => ({
-          title: route.params?.name || 'Product Display'
-        })}
-      />
+      <HomeStack.Group>
+        <HomeStack.Screen name="HomeScreen" options={{headerShown: false}} component={HomeScreen} />
+        <HomeStack.Screen name="Categories" component={CategoriesScreen} />
+        <HomeStack.Screen
+          name="ProductIndex"
+          component={ProductIndexScreen}
+          options={({ route }) => ({
+            title: route.params?.category?.name || 'Product Index'
+          })}
+        />
+        <HomeStack.Screen
+          name="ProductDisplay"
+          component={ProductDisplayScreen}
+          options={({ route }) => ({
+            title: route.params?.name || 'Product Display'
+          })}
+        />
+      </HomeStack.Group>
     </HomeStack.Navigator>
   );
 }

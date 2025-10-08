@@ -8,6 +8,7 @@ import { Ionicons, IoniconsIconName } from "@react-native-vector-icons/ionicons"
 
 import { store } from './src/app/store';
 import { Provider } from 'react-redux';
+import AccountScreenStack from './src/stacks/AccountStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,8 @@ function RootStack() {
               iconName = focused ? 'scan-sharp' : 'scan-outline';
             } else if (route.name === 'Cart') {
               iconName = focused ? 'cart-sharp' : 'cart-outline';
+            } else if (route.name === 'Account') {
+              iconName = focused ? 'person-circle-sharp' : 'person-circle-outline'
             }
             return <Ionicons name={iconName as IoniconsIconName} color='#077cff' size={20} />
           },
@@ -31,6 +34,7 @@ function RootStack() {
         })}
       >
         <Tab.Screen name="Home" component={HomeScreenStack} />
+        <Tab.Screen name="Account" component={AccountScreenStack} />
         <Tab.Screen name="Scan" component={ScanScreenStack} />
         <Tab.Screen name="Cart"
           component={CartScreenStack}

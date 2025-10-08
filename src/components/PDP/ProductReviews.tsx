@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View } from "react-native";
 import { Review } from "../../types/product";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import RatingStars from '../RatingStars';
-import { styles } from '../../styles/Reviews';
+import { styles } from '../../styles/components/Reviews';
 
 interface ProductReviewProps {
   reviews: Review[];
