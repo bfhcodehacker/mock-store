@@ -27,7 +27,10 @@ const AccountScreenStack = () => {
         <AccountStack.Screen name="AccountScreen" component={AccountScreen} options={{title: 'Account'}} />
       </AccountStack.Group>
       <AccountStack.Group screenOptions={{ presentation: 'modal' }}>
-        <AccountStack.Screen name="SignIn" component={SignInScreen} />
+        <AccountStack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{ headerBackVisible: false, gestureEnabled: false }}/>
       </AccountStack.Group>
     </AccountStack.Navigator>
   );
