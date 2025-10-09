@@ -1,16 +1,15 @@
-import { TouchableOpacity, Text, View } from 'react-native';
-import Ionicons from "@react-native-vector-icons/ionicons";
+import { Text, View } from 'react-native';
 import { styles } from '../styles/components/HomeHeader';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { HomeStackParamList } from '../stacks/HomeStack';
+import { useAppSelector } from '../app/hooks';
 
 export const HomeHeader: React.FC = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const signInData = useAppSelector(state => state.account.signInData);
+  const firstName = signInData?.firstName;
+  const welcomeText = firstName ? `Welcome ${firstName}!` : 'Welcome!';
 
   return (
     <View style={styles.headerBox}>
-      <Text style={styles.welcomeText}>Welcome!</Text>
+      <Text style={styles.welcomeText}>{welcomeText}</Text>
     </View>
   );
 }
