@@ -15,7 +15,6 @@ export const signIn = createAsyncThunk(
         }
       };
       const response = await axios.post('https://dummyjson.com/auth/login', body, options);
-      console.log('login response', response);
       if (response.data.accessToken && response.headers?.['set-cookie']?.[0]) {
         CookieManager.setFromResponse(
           'https://dummyjson.com',
@@ -32,9 +31,7 @@ export const signIn = createAsyncThunk(
 export const getUserData = createAsyncThunk(
   'account/getUserData',
   async () => {
-    console.log('get user data');
     const response = await axios.get('https://dummyjson.com/auth/me');
-    console.log('user data response', response);
     return response.data;
   }
 );
@@ -67,7 +64,6 @@ export const accountDataSlice = createSlice({
         state.signInStatus = 'loading';
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        console.log('sign in fulfilled', action);
         if (action.payload.accessToken) {
           state.isLoggedIn = true;
           state.signInData = action.payload;
@@ -84,7 +80,6 @@ export const accountDataSlice = createSlice({
         state.userDataStatus = 'loading';
       })
       .addCase(getUserData.fulfilled, (state, action) => {
-        console.log('got user data', action);
         state.userDataStatus = 'success';
         state.userData = action.payload;
       })
