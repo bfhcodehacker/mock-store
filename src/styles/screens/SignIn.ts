@@ -49,5 +49,13 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 5,
     backgroundColor: '#00008b'
+  },
+  checkboxContainer: {
+    margin: 5,
+    flexDirection: 'row'
+  },
+  rememberMeText: {
+    marginLeft: 5,
+    fontSize: 16
   }
 });

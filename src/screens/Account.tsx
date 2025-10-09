@@ -1,14 +1,11 @@
 import {
-  ActivityIndicator,
-  Alert,
   Image,
-  PermissionsAndroid,
   ScrollView,
   Text,
   TouchableOpacity,
   View
 } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -16,20 +13,11 @@ import { AccountStackParamList } from "../stacks/AccountStack";
 import { getUserData } from "../reducers/accountData";
 import { GradientWrapper } from "../components/GradientWrapper";
 import { styles } from '../styles/screens/Account';
-import { LeafletView } from 'react-native-leaflet-view';
 import { Address } from "../types/account";
-import Geolocation, { GeolocationResponse } from '@react-native-community/geolocation';
+import { Location } from "../components/Location";
+import { signUserOut } from "../lib/authHelpers";
 
 const defaultImage = require('../assets/images/defaultProfile.jpg');
-const defaultLocation = {
-  lat: 40.7484,
-  lng: -73.9857
-};
-const defaultMarker = {
-  position: defaultLocation,
-  icon: '📍',
-  size: [18, 18]
-};
 
 export const AccountScreen: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<AccountStackParamList>>();
@@ -37,12 +25,14 @@ export const AccountScreen: React.FC = () => {
   const isLoggedIn = useAppSelector(state => state.account.isLoggedIn);
   const account = useAppSelector(state => state.account);
   const { signInData, userData } = account;
-  const [position, setPosition] = useState(defaultLocation);
-  const [marker, setMarker] = useState(defaultMarker);
+
+  const goToSignIn = () => {
+    navigation.navigate('SignIn');
+  }
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigation.navigate('SignIn');
+      goToSignIn();
     } else if (!account.userData && account.userDataStatus === 'idle') {
       dispatch(getUserData());
     }
@@ -51,7 +41,9 @@ export const AccountScreen: React.FC = () => {
   if (!account.isLoggedIn || !signInData) {
     return (
       <GradientWrapper>
-        <ActivityIndicator size='large' />
+        <TouchableOpacity onPress={goToSignIn} style={styles.signInBtn}>
+          <Text style={styles.signInText}>Sign In</Text>
+        </TouchableOpacity>
       </GradientWrapper>
     );
   }
@@ -75,46 +67,8 @@ export const AccountScreen: React.FC = () => {
     );
   }
 
-  const getLocation = () => {
-    Geolocation.getCurrentPosition(
-      (position) => { setLocation(position) },
-      errorGettingLocation
-    );
-  }
-
-  const errorGettingLocation = (data?: any) => {
-    Alert.alert('There was an error getting your location')
-  }
-
-  const setLocation = (data: GeolocationResponse) => {
-    const coords = {
-      lat: data.coords.latitude,
-      lng: data.coords.longitude
-    };
-    setPosition(coords);
-    const mark = {
-      position: coords,
-      icon: '📍',
-      size: [18, 18]
-    };
-    setMarker(mark);
-  }
-
-  const requestLocation = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Location Permission',
-        message: 'This App needs access to your location ' +
-                  'so we can know where you are.',
-        buttonPositive: 'Accept'
-      }
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      getLocation();
-    } else {
-      errorGettingLocation();
-    }
+  const signOut = () => {
+    signUserOut(dispatch);
   }
 
   return (
@@ -140,18 +94,9 @@ export const AccountScreen: React.FC = () => {
             {addresses.map(address => renderAddress(address))}
           </View>
         )}
-        <View style={styles.mapBox}>
-          <Text style={styles.mapTitle}>Location</Text>
-          <View style={styles.mapView}>
-            <LeafletView
-              mapCenterPosition={position}
-              zoom={10}
-              mapMarkers={[marker]}
-            />
-          </View>
-        </View>
-        <TouchableOpacity onPress={requestLocation} style={styles.locationBtn}>
-          <Text style={styles.locationBtnText}>Use Current Location</Text>
+        <Location />
+        <TouchableOpacity onPress={signOut} style={styles.signOutBtn}>
+          <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
       </ScrollView>
     </GradientWrapper>

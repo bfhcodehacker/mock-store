@@ -1,6 +1,7 @@
 export interface UserCredentials {
   username: string;
   password: string;
+  savePassword?: boolean;
 }
 
 export interface SignInData {

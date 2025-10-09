@@ -2,13 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { SignInData, UserCredentials, UserData } from "../types/account";
 import CookieManager from '@react-native-cookies/cookies';
-
+import { USER_CREDENTIALS_KEY } from "../constants/constants";
+import * as Keychain from 'react-native-keychain';
 
 export const signIn = createAsyncThunk(
   'account/signIn',
   async (data: UserCredentials) => {
+    const signInData = {
+      username: data.username,
+      password: data.password
+    };
     try {
-      const body = JSON.stringify(data);
+      const body = JSON.stringify(signInData);
       const options = {
         headers: {
           'Content-Type': 'application/json'
@@ -19,7 +24,12 @@ export const signIn = createAsyncThunk(
         CookieManager.setFromResponse(
           'https://dummyjson.com',
           response.headers?.['set-cookie']?.[0]
-        ).then((success) => console.log('set cookies from login success', success));
+        );
+        if (data.savePassword) {
+          const username = data.username;
+          const password = data.password;
+          await Keychain.setGenericPassword(username, password, {service: USER_CREDENTIALS_KEY});
+        }
       }
       return response.data;
     } catch (e) {
@@ -47,7 +57,9 @@ export interface AccountState {
 const initialAccountState: AccountState = {
   isLoggedIn: false,
   signInStatus: 'idle',
-  userDataStatus: 'idle'
+  userDataStatus: 'idle',
+  userData: undefined,
+  signInData: undefined
 };
 
 export const accountDataSlice = createSlice({
@@ -55,7 +67,11 @@ export const accountDataSlice = createSlice({
   initialState: initialAccountState,
   reducers: {
     signOut: (state) => {
-      state = initialAccountState;
+      state.isLoggedIn = false;
+      state.signInData = undefined;
+      state.signInStatus = 'idle';
+      state.userData = undefined;
+      state.userDataStatus = 'idle';
     }
   },
   extraReducers: (builder) => {

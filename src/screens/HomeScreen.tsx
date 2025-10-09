@@ -15,13 +15,15 @@ import { addToCart } from '../reducers/cartData';
 import { Product } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
 import { HomeHeader } from '../components/HomeHeader';
+import { useSavedCredentials } from '../lib/authHelpers';
 
 const titleBackground = require('../assets/images/home-title.jpeg');
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
-  const featuredCategories = useAppSelector((state) => state.storeData.featuredCategories);
-  const featuredProducts = useAppSelector((state) => state.storeData.featuredProducts);
+  const featuredCategories = useAppSelector(state => state.storeData.featuredCategories);
+  const featuredProducts = useAppSelector(state => state.storeData.featuredProducts);
+  const isLoggedIn = useAppSelector(state => state.account.isLoggedIn);
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const [ productAddedToCart, setProductAddedToCart ] = useState<Product | null>(null);
 
@@ -29,6 +31,9 @@ export const HomeScreen = () => {
     if (!featuredCategories?.length) {
       dispatch(fetchCategories());
       dispatch(fetchProducts());
+    }
+    if (!isLoggedIn) {
+      useSavedCredentials(dispatch);
     }
   }, []);
 

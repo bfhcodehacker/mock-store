@@ -1,6 +1,19 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  signInBtn: {
+    marginTop: '30%',
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 10
+  },
+  signInText: {
+    color: '#00008b',
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingVertical: 10,
+    paddingHorizontal: 30
+  },
   profileBox: {
     margin: 20,
     padding: 20,
@@ -47,28 +60,14 @@ export const styles = StyleSheet.create({
     color: '#0000b8',
     fontSize: 16
   },
-  mapBox: {
-    margin: 20,
-    alignItems: 'center'
-  },
-  mapTitle: {
-    fontSize: 20,
-    color: '#fff',
-    textAlign: 'left',
-    width: '100%'
-  },
-  mapView: {
-    margin: 20,
-    width: '100%',
-    height: 300
-  },
-  locationBtn: {
+  signOutBtn: {
+    marginTop: 50,
     marginHorizontal: 20,
     marginBottom: 50,
     borderRadius: 5,
     backgroundColor: '#fff'
   },
-  locationBtnText: {
+  signOutText: {
     color: '#00008b',
     fontSize: 20,
     fontWeight: 'bold',
