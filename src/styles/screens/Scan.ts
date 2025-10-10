@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
   scanBtnText: {
     fontSize: 24,
     color: '#fff',
-    fontWeight: 'bold',
     textAlign: 'center'
   },
   modalBox: {
@@ -61,8 +60,7 @@ export const styles = StyleSheet.create({
   },
   productModalText: {
    fontSize: 24,
-    textAlign: 'center',
-    fontWeight: 'bold'
+    textAlign: 'center'
   },
   productImage: {
     height: 100,

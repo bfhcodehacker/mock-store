@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
   productTitle: {
     color: '#00008B',
     fontSize: 18,
-    fontWeight: 'bold',
     width: '85%'
   },
   productInfoBox: {

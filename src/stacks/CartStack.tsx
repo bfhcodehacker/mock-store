@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CartScreen } from "../screens/CartScreen";
 import { CheckoutScreen } from "../screens/Checkout";
+import { getHeaderTitle } from '@react-navigation/elements';
+import { NavHeader } from "../components/NavHeader";
 
 export type CartStackParamList = {
   CartScreen: undefined;
@@ -13,15 +15,17 @@ const CartScreenStack = () => {
   return (
     <CartStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#00008B'
-        },
-        headerTitleAlign: 'center',
-        headerTitleStyle: {
-          color: '#fff'
-        },
-        headerTintColor: '#fff'
-      }}    
+        header: ({ navigation, route, options, back }) => {
+          const title = getHeaderTitle(options, route.name);
+
+          return (
+            <NavHeader
+              title={title}
+              goBack={back ? navigation.goBack : undefined}
+            />
+          );
+        }
+      }}
     >
       <CartStack.Screen name="CartScreen" component={CartScreen} options={{title: 'Cart'}} />
       <CartStack.Screen name="Checkout" component={CheckoutScreen} />

@@ -15,7 +15,7 @@ import { Product } from '../types/product';
 import { styles } from '../styles/screens/Cart';
 import { calculateCartTotal } from '../lib/helpers';
 import { CartStackParamList } from '../stacks/CartStack';
-import { FeaturedProducts } from '../components/featuredProducts';
+import { FeaturedProducts } from '../components/FeaturedProducts';
 import { ATCModal } from '../components/ATCModal';
 
 export const CartScreen = () => {
@@ -23,6 +23,7 @@ export const CartScreen = () => {
   const cartCount = useAppSelector(state => state.cartData.cartCount);
   const items = useAppSelector(state => state.cartData.items);
   const featuredProducts = useAppSelector((state) => state.storeData.cartProducts);
+  const theme = useAppSelector(state => state.theme);
   const navigation = useNavigation<NativeStackNavigationProp<CartStackParamList>>();
   const [productAddedToCart, setProductAddedToCart] = useState<Product | null>(null);
 
@@ -84,8 +85,12 @@ export const CartScreen = () => {
         {items.length ? (
           <View>
             <View style={styles.cartHeader}>
-              <Text style={styles.cartCount}>Item Count: {cartCount}</Text>
-              <Text style={styles.cartHeaderTotal}>Total: ${cartTotal}</Text>
+              <Text style={[styles.cartCount, theme.secondaryFont]}>
+                Item Count: {cartCount}
+              </Text>
+              <Text style={[styles.cartHeaderTotal, theme.secondaryFont]}>
+                Total: ${cartTotal}
+              </Text>
             </View>
             {items.map(renderCartItem)}
           </View>
@@ -94,9 +99,11 @@ export const CartScreen = () => {
             <Text style={styles.emptyCartText}>There are no items in the cart</Text>
             <TouchableOpacity
               onPress={goToHomeTab}
-              style={styles.continueShoppingBtn}
+              style={[styles.continueShoppingBtn, { backgroundColor: theme.primaryColor}]}
             >
-              <Text style={styles.continueShoppingText}>Continue Shopping</Text>
+              <Text style={[styles.continueShoppingText, theme.primaryFont]}>
+                Continue Shopping
+              </Text>
             </TouchableOpacity>
           </View>
         )}
@@ -107,9 +114,9 @@ export const CartScreen = () => {
           addToCart={addToCartPress}
           navigateToProduct={navigateToProduct}
           products={featuredProducts}
-          titleStyle={{color: '#00008b'}}
-          descStyle={{color: '#00008b'}}
-          boxStyle={{borderColor: '#00008b'}}
+          titleStyle={{color: theme.primaryColor}}
+          descStyle={{color: theme.primaryColor}}
+          boxStyle={{borderColor: theme.primaryColor}}
         />
       )}
       {!!productAddedToCart && (

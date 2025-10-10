@@ -20,6 +20,7 @@ export const SignInScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const signInStatus = useAppSelector(state => state.account.signInStatus);
   const isLoggedIn = useAppSelector(state => state.account.isLoggedIn);
+  const theme = useAppSelector(state => state.theme);
   const [ rememberMe, setRememberMe ] = useState(false);
 
   useEffect(() => {
@@ -61,6 +62,7 @@ export const SignInScreen: React.FC = () => {
           render={({ field: { onChange, value }}) => (
             <TextInput
               placeholder="Username"
+              placeholderTextColor={'#636363'}
               onChangeText={onChange}
               value={value}
               style={styles.textInput}
@@ -75,6 +77,7 @@ export const SignInScreen: React.FC = () => {
           render={({ field: { onChange, value }}) => (
             <TextInput
               placeholder="Password"
+              placeholderTextColor={'#636363'}
               onChangeText={onChange}
               value={value}
               style={styles.textInput}
@@ -97,8 +100,13 @@ export const SignInScreen: React.FC = () => {
             </Text>
           )}
         </View>
-        <TouchableOpacity style={styles.submitBtn} onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.submitBtnText}>Submit</Text>
+        <TouchableOpacity
+          style={styles.submitBtn}
+          onPress={handleSubmit(onSubmit)}
+        >
+          <Text style={[styles.submitBtnText, theme.primaryFont, { backgroundColor: theme.primaryColor}]}>
+            Submit
+          </Text>
         </TouchableOpacity>
       </View>
     </GradientWrapper>

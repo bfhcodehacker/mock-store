@@ -8,7 +8,7 @@ import { useAppState } from '@react-native-community/hooks';
 import { useState } from 'react';
 import { useLazyGetProductQuery } from '../reducers/productData';
 import { addToCart } from '../reducers/cartData';
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { Product } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
 import { Modal } from '../components/Modal';
@@ -19,6 +19,7 @@ export const ScanScreen = () => {
   const isFocused = useIsFocused();
   const appState = useAppState();
   const dispatch = useAppDispatch();
+  const theme = useAppSelector(state => state.theme);
 
   const [showProductModal, setShowProductModal] = useState(false);
   const [showATCModal, setShowATCModal] = useState(false);
@@ -59,6 +60,17 @@ export const ScanScreen = () => {
     }
   })
 
+  const renderCloseBtn = () => {
+    return (
+      <TouchableOpacity
+        onPress={closeProductModal}
+        style={[styles.closeProductModalBtn, { backgroundColor: theme.primaryColor}]}
+      >
+        <Text style={[styles.closeProductModalBtnText, theme.primaryFont]}>Close</Text>
+      </TouchableOpacity>
+    );
+  }
+
   const renderModalContent = () => {
     if (isLoading || isFetching) {
       return (
@@ -66,18 +78,14 @@ export const ScanScreen = () => {
           <View style={styles.activityArea}>
             <ActivityIndicator size='large' />
           </View>
-          <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
-            <Text style={styles.closeProductModalBtnText}>Close</Text>
-          </TouchableOpacity>
+          
         </View>
       );
     } else if (!data || isError) {
       return (
         <View style={[styles.modalBox, styles.errorBox]}>
           <Text style={[styles.productModalText, styles.errorText]}>Error Loading Product</Text>
-          <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
-            <Text style={styles.closeProductModalBtnText}>Close</Text>
-          </TouchableOpacity>
+          {renderCloseBtn()}
         </View>
       );
     } else {
@@ -91,9 +99,7 @@ export const ScanScreen = () => {
           <TouchableOpacity onPress={addProductToCart(data)} style={styles.atcProductModalBtn}>
             <Text style={styles.closeProductModalBtnText}>Add To Cart</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={closeProductModal} style={styles.closeProductModalBtn}>
-            <Text style={styles.closeProductModalBtnText}>Close</Text>
-          </TouchableOpacity>
+          {renderCloseBtn()}
         </View>
       );
     }
@@ -102,12 +108,15 @@ export const ScanScreen = () => {
   if (!hasPermission) {
     return (
       <View style={styles.main}>
-        <View style={styles.cameraNotReady}>
-          <Text style={[styles.errorMessage, styles.notReadyMargin]}>
+        <View style={[styles.cameraNotReady, { backgroundColor: theme.primaryColor}]}>
+          <Text style={[styles.errorMessage, styles.notReadyMargin, theme.primaryFont]}>
             Please allow camera access to scan product barcodes
           </Text>
-          <TouchableOpacity onPress={requestPermission} style={styles.scanBtn}>
-            <Text style={styles.scanBtnText}>Allow Camera Access</Text>
+          <TouchableOpacity
+            onPress={requestPermission}
+            style={[styles.scanBtn, { borderColor: theme.secondaryColor}]}
+          >
+            <Text style={[styles.scanBtnText, theme.primaryFont]}>Allow Camera Access</Text>
           </TouchableOpacity>
         </View>
       </View>      
@@ -118,11 +127,14 @@ export const ScanScreen = () => {
     return (
       <View style={styles.main}>
         <View style={styles.cameraNotReady}>
-          <Text style={[styles.errorMessage, styles.notReadyMargin]}>
+          <Text style={[styles.errorMessage, styles.notReadyMargin, theme.primaryFont]}>
             There was an error accessing the camera
           </Text>
-          <TouchableOpacity onPress={continueShopping} style={styles.scanBtn}>
-            <Text style={styles.scanBtnText}>Continue Shopping</Text>
+          <TouchableOpacity
+            onPress={continueShopping}
+            style={[styles.scanBtn, { borderColor: theme.secondaryColor}]}
+          >
+            <Text style={[styles.scanBtnText, theme.primaryFont]}>Continue Shopping</Text>
           </TouchableOpacity>
         </View>
       </View>      

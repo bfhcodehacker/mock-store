@@ -7,7 +7,7 @@ import { styles } from '../styles/screens/ProductDisplay';
 import { ImageCarousel } from '../components/PDP/ImageCarousel';
 import { PDPDetails } from '../components/PDP/PDPDetails';
 import { formatPDPDetails } from '../lib/helpers';
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { addToCart } from '../reducers/cartData';
 import { ProductDetail } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
@@ -24,10 +24,9 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
   const { data, isLoading } = useGetProductQuery(productId);
   const pdpDetails: ProductDetail[] = useMemo(() => formatPDPDetails(data), [data]);
   const dispatch = useAppDispatch();
+  const theme = useAppSelector(state => state.theme);
 
   const [showAddedToCartModal, setShowAddedToCartModal] = useState(false);
-
-  console.log('data', data);
 
   const addProductToCart = () => {
     if (data) {
@@ -50,13 +49,13 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
         <ScrollView style={styles.container}>
           {data ? (
             <View style={styles.productBox}>
-              <View style={styles.productContainer}>
+              <View style={[styles.productContainer, { backgroundColor: theme.secondaryColor}]}>
                 <View style={styles.carouselContainer}>
                   <ImageCarousel images={data.images} />
                 </View>
               </View>
-              <View style={styles.productInfo}>
-                <Text style={styles.productTitle}>{data.title}</Text>
+              <View style={[styles.productInfo, { backgroundColor: theme.secondaryColor}]}>
+                <Text style={[styles.productTitle, theme.secondaryFont]}>{data.title}</Text>
                 <Text style={styles.productPrice}>${data.price}</Text>
                 <Text style={styles.productDescription}>{data.description}</Text>
                 {data.reviews?.length && (
@@ -84,8 +83,11 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
         <ATCModal product={data} onClose={closeAddedToCartModal} />
       )}
       {!isLoading && !!data && (
-        <TouchableOpacity onPress={addProductToCart} style={styles.addToCartBtn}>
-          <Text style={styles.addToCartText}>Add To Cart</Text>
+        <TouchableOpacity
+          onPress={addProductToCart}
+          style={[styles.addToCartBtn, { backgroundColor: theme.primaryColor}]}
+        >
+          <Text style={[styles.addToCartText, theme.primaryFont]}>Add To Cart</Text>
         </TouchableOpacity>
       )}
     </GradientWrapper>

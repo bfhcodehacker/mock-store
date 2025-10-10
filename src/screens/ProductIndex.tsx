@@ -10,6 +10,7 @@ import { styles } from '../styles/screens/ProductIndex';
 import { Product } from '../types/product';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../stacks/HomeStack';
+import { useAppSelector } from '../app/hooks';
 
 interface ProductIndexProps {
   route?: RouteProp<{ params: { category: Category} }, 'params'>;
@@ -19,6 +20,7 @@ export const ProductIndexScreen: React.FC<ProductIndexProps> = ({ route }) => {
   const slug = route?.params?.category?.slug || '';
   const { data, isLoading } = useGetProductsFromCategoryQuery(slug);
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
+  const theme = useAppSelector(state => state.theme);
 
   const onProductPress = (product: Product) => () => {
     navigation.navigate('ProductDisplay', { productId: product.id, name: product.title });
@@ -38,7 +40,9 @@ export const ProductIndexScreen: React.FC<ProductIndexProps> = ({ route }) => {
             })
           ) : (
             <View style={styles.loading}>
-              <Text style={styles.noProductsText}>Sorry, we were unable to load product data</Text>
+              <Text style={[styles.noProductsText, theme.primaryFont]}>
+                Sorry, we were unable to load product data
+              </Text>
             </View>
           )}
         </ScrollView>

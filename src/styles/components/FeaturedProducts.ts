@@ -48,7 +48,6 @@ export const styles = StyleSheet.create({
   addToCartText: {
     color: '#fff',
     textAlign: 'center',
-    fontWeight: 'bold',
     margin: 5
   }
 })

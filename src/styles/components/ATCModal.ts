@@ -22,13 +22,11 @@ export const styles = StyleSheet.create({
   modalItemTitle: {
     fontSize: 18,
     textAlign: 'center',
-    marginBottom: 10,
-    fontWeight: 'bold'
+    marginBottom: 10
   },
   addedToCartModalText: {
     fontSize: 24,
-    textAlign: 'center',
-    fontWeight: 'bold'
+    textAlign: 'center'
   },
   closeModalBtn: {
     width: '100%',

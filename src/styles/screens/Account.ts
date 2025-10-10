@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
   signInText: {
     color: '#00008b',
     fontSize: 20,
-    fontWeight: 'bold',
     paddingVertical: 10,
     paddingHorizontal: 30
   },
@@ -70,7 +69,6 @@ export const styles = StyleSheet.create({
   signOutText: {
     color: '#00008b',
     fontSize: 20,
-    fontWeight: 'bold',
     paddingHorizontal: 20,
     paddingVertical: 10,
     textAlign: 'center'

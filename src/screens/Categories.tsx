@@ -21,14 +21,14 @@ export const CategoriesScreen = () => {
     <GradientWrapper>
       <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
-        {categories.map(category => {
-          return <FeaturedCategory
-            onPress={onPress}
-            category={category}
-            key={category.slug}
-            boxStyle={styles.boxStyle}
-          />
-        })}
+          {categories.map(category => {
+            return <FeaturedCategory
+              onPress={onPress}
+              category={category}
+              key={category.slug}
+              boxStyle={styles.boxStyle}
+            />
+          })}
         </View>
       </ScrollView>
     </GradientWrapper>

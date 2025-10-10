@@ -2,8 +2,32 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/LavishlyYours-Regular.ttf",
+      "path": "src/assets/fonts/DeliusSwashCapsRegular.ttf",
+      "sha1": "f162a8e2fd50219b68deaf18a8750c527560ef41"
+    },
+    {
+      "path": "src/assets/fonts/FleurDeLeahRegular.ttf",
+      "sha1": "1f4641972449733b452408854f062a0771ee616b"
+    },
+    {
+      "path": "src/assets/fonts/IcebergRegular.ttf",
+      "sha1": "d5195beaa49ad05a4562acc2c36f405adb853af0"
+    },
+    {
+      "path": "src/assets/fonts/InterRegular.ttf",
+      "sha1": "bd1976c1f019853ab6143ef1246e25aa66fd990e"
+    },
+    {
+      "path": "src/assets/fonts/LavishlyYoursRegular.ttf",
       "sha1": "e154f32d8ac54a87be287bfdb17ca5f56599e170"
+    },
+    {
+      "path": "src/assets/fonts/MetalManiaRegular.ttf",
+      "sha1": "f8361b31da9fd6e87019291416a293a48f55627d"
+    },
+    {
+      "path": "src/assets/fonts/ShadowsIntoLightTwoRegular.ttf",
+      "sha1": "c3099f67645f84c07ca0595648d78f5971f90189"
     }
   ]
 }

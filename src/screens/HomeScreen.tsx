@@ -10,7 +10,7 @@ import { Category } from '../types/category';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { HomeStackParamList } from '../stacks/HomeStack';
-import { FeaturedProducts } from '../components/featuredProducts';
+import { FeaturedProducts } from '../components/FeaturedProducts';
 import { addToCart } from '../reducers/cartData';
 import { Product } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
