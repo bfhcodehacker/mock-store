@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import { LeafletView } from 'react-native-leaflet-view';
 import Geolocation, { GeolocationResponse } from '@react-native-community/geolocation';
+import { useAppSelector } from "../app/hooks";
 
 const styles = StyleSheet.create({
   mapBox: {
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
   locationBtnText: {
     color: '#00008b',
     fontSize: 20,
-    fontWeight: 'bold',
     paddingHorizontal: 20,
     paddingVertical: 10,
     textAlign: 'center'
@@ -53,6 +53,7 @@ const defaultMarker = {
 };
 
 export const Location: React.FC = () => {
+  const theme = useAppSelector(state => state.theme);
   const [position, setPosition] = useState(defaultLocation);
   const [marker, setMarker] = useState(defaultMarker);
 
@@ -101,7 +102,7 @@ export const Location: React.FC = () => {
   return (
     <View>
       <View style={styles.mapBox}>
-        <Text style={styles.mapTitle}>Location</Text>
+        <Text style={[styles.mapTitle, theme.primaryFont]}>Location</Text>
         <View style={styles.mapView}>
           <LeafletView
             mapCenterPosition={position}
@@ -110,8 +111,13 @@ export const Location: React.FC = () => {
           />
         </View>
       </View>
-      <TouchableOpacity onPress={requestLocation} style={styles.locationBtn}>
-        <Text style={styles.locationBtnText}>Use Current Location</Text>
+      <TouchableOpacity
+        onPress={requestLocation}
+        style={[styles.locationBtn, { backgroundColor: theme.secondaryColor}]}
+      >
+        <Text style={[styles.locationBtnText, theme.secondaryFont]}>
+          Use Current Location
+        </Text>
       </TouchableOpacity>
     </View>
   )

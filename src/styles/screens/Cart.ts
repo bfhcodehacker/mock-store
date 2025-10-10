@@ -17,13 +17,11 @@ export const styles = StyleSheet.create({
   },
   cartCount: {
     fontSize: 18,
-    color: '#00008B',
-    fontWeight: 'bold'
+    color: '#00008B'
   },
   cartHeaderTotal: {
     fontSize: 18,
-    color: '#00008B',
-    fontWeight: 'bold'
+    color: '#00008B'
   },
   emptyCart: {
     marginTop: 200,

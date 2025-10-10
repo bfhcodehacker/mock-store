@@ -4,6 +4,8 @@ import { CategoriesScreen } from "../screens/Categories";
 import { ProductIndexScreen } from "../screens/ProductIndex";
 import { ProductDisplayScreen } from "../screens/ProductDisplay";
 import { Category } from "../types/category";
+import { getHeaderTitle } from '@react-navigation/elements';
+import { NavHeader } from "../components/NavHeader";
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
@@ -18,14 +20,16 @@ const HomeScreenStack = () => {
   return (
     <HomeStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#00008B'
-        },
-        headerTitleAlign: 'center',
-        headerTitleStyle: {
-          color: '#fff'
-        },
-        headerTintColor: '#fff'
+        header: ({ navigation, route, options, back }) => {
+          const title = getHeaderTitle(options, route.name);
+
+          return (
+            <NavHeader
+              title={title}
+              goBack={back ? navigation.goBack : undefined}
+            />
+          );
+        }
       }}
     >
       <HomeStack.Group>

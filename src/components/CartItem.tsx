@@ -2,6 +2,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../styles/components/CartItem";
 import { CartProduct } from "../types/cartTypes/cartTypes";
 import Ionicons from "@react-native-vector-icons/ionicons";
+import { useAppSelector } from "../app/hooks";
 
 interface CartItemProps {
   item: CartProduct;
@@ -13,6 +14,7 @@ interface CartItemProps {
 const defaultImage = require('../assets/images/default-product.webp');
 
 export const CartItem: React.FC<CartItemProps> = ({ item, increment, decrement, remove }) => {
+  const theme = useAppSelector(state => state.theme);
   const imageSrc = item.thumbnail ? { uri: item.thumbnail } : defaultImage;
 
   const incrementQty = () => {
@@ -38,21 +40,27 @@ export const CartItem: React.FC<CartItemProps> = ({ item, increment, decrement, 
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.primaryColor }]}>
       <View style={styles.topContainer}>
-        <Image source={imageSrc} resizeMode='contain' style={styles.image} />
+        <Image
+          source={imageSrc}
+          resizeMode='contain'
+          style={[styles.image, { backgroundColor: theme.secondaryColor }]}
+        />
         <View style={styles.itemInfo}>
-          <Text style={styles.titleText} numberOfLines={2}>{item.title}</Text>
+          <Text style={[styles.titleText, theme.primaryFont]} numberOfLines={2}>
+            {item.title}
+          </Text>
           <View style={styles.itemPriceQty}>
-            <Text style={styles.priceText}>${item.price} each</Text>
-            <Text style={styles.priceText}>Quantity: {item.qty}</Text>
+            <Text style={[styles.priceText, theme.primaryFont]}>${item.price} each</Text>
+            <Text style={[styles.priceText, theme.primaryFont]}>Quantity: {item.qty}</Text>
           </View>
         </View>
       </View>
       <View style={styles.qtyEditBox}>
         <View style={styles.qtyTotalBox}>
           {!!item.price && (
-            <Text style={styles.itemTotalPrice}>
+            <Text style={[styles.itemTotalPrice, theme.primaryFont]}>
               Total: ${(item.price * item.qty).toFixed(2)}
             </Text>
           )}
@@ -62,17 +70,24 @@ export const CartItem: React.FC<CartItemProps> = ({ item, increment, decrement, 
               style={styles.stepperIcon}
             >
               {item.qty > 1 ? (
-                <Ionicons name='remove' size={20} color={'#FFF'} />
+                <Ionicons name='remove' size={20} color={theme.secondaryColor} />
               ) : (
-                <Ionicons name='trash-outline' size={20} color={'#fff'} />
+                <Ionicons name='trash-outline' size={20} color={theme.secondaryColor} />
               )}
             </TouchableOpacity>
-            <Text style={styles.stepperQty}>{item.qty}</Text>
+            <Text style={[
+                styles.stepperQty,
+                theme.primaryFont,
+                { borderColor: theme.secondaryColor}
+              ]}
+            >
+              {item.qty}
+            </Text>
             <TouchableOpacity
               onPress={incrementQty}
               style={styles.stepperIcon}
             >
-              <Ionicons name='add' size={20} color={'#FFF'} />
+              <Ionicons name='add' size={20} color={theme.secondaryColor} />
             </TouchableOpacity>
           </View>
         </View>
@@ -80,7 +95,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item, increment, decrement, 
           onPress={removeItem}
           style={styles.removeItem}
         >
-          <Ionicons name='trash-outline' size={20} color={'#fff'} />
+          <Ionicons name='trash-outline' size={20} color={theme.secondaryColor} />
         </TouchableOpacity>
       </View>
     </View>

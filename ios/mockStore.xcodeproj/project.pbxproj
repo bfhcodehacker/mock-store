@@ -11,7 +11,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		3EB5701244BB4D929A7FB15D /* LavishlyYours-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FDDA1216AD94ADBB15CA686 /* LavishlyYours-Regular.ttf */; };
+		6558CD1B46EB4F6BA671E170 /* DeliusSwashCapsRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BF4683B08EC4F10A591189E /* DeliusSwashCapsRegular.ttf */; };
+		6CE108B413234E6A80D1C33D /* FleurDeLeahRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3D715DEB007415AAFEE2DCF /* FleurDeLeahRegular.ttf */; };
+		362557F6E97D4A73B96BFD93 /* IcebergRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC91A9FA903D4C08B92180EE /* IcebergRegular.ttf */; };
+		229E03B355874809A72FE2BC /* InterRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EEC8A417C3D45E0B4298354 /* InterRegular.ttf */; };
+		AFF97EE5A34740749023C345 /* LavishlyYoursRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE0975E2E0FF46E18A2BE63C /* LavishlyYoursRegular.ttf */; };
+		708122027E6D4B7B9A0DFE79 /* MetalManiaRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5CBF9F1A0E546F5BEEB0EBF /* MetalManiaRegular.ttf */; };
+		76D9848B2B454C28BA7CB2EA /* ShadowsIntoLightTwoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC4D2FB7AB04C8592C1AB46 /* ShadowsIntoLightTwoRegular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +31,13 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = mockStore/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = mockStore/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		2FDDA1216AD94ADBB15CA686 /* LavishlyYours-Regular.ttf */ = {isa = PBXFileReference; name = "LavishlyYours-Regular.ttf"; path = "../src/assets/fonts/LavishlyYours-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9BF4683B08EC4F10A591189E /* DeliusSwashCapsRegular.ttf */ = {isa = PBXFileReference; name = "DeliusSwashCapsRegular.ttf"; path = "../src/assets/fonts/DeliusSwashCapsRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C3D715DEB007415AAFEE2DCF /* FleurDeLeahRegular.ttf */ = {isa = PBXFileReference; name = "FleurDeLeahRegular.ttf"; path = "../src/assets/fonts/FleurDeLeahRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BC91A9FA903D4C08B92180EE /* IcebergRegular.ttf */ = {isa = PBXFileReference; name = "IcebergRegular.ttf"; path = "../src/assets/fonts/IcebergRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9EEC8A417C3D45E0B4298354 /* InterRegular.ttf */ = {isa = PBXFileReference; name = "InterRegular.ttf"; path = "../src/assets/fonts/InterRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AE0975E2E0FF46E18A2BE63C /* LavishlyYoursRegular.ttf */ = {isa = PBXFileReference; name = "LavishlyYoursRegular.ttf"; path = "../src/assets/fonts/LavishlyYoursRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B5CBF9F1A0E546F5BEEB0EBF /* MetalManiaRegular.ttf */ = {isa = PBXFileReference; name = "MetalManiaRegular.ttf"; path = "../src/assets/fonts/MetalManiaRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3FC4D2FB7AB04C8592C1AB46 /* ShadowsIntoLightTwoRegular.ttf */ = {isa = PBXFileReference; name = "ShadowsIntoLightTwoRegular.ttf"; path = "../src/assets/fonts/ShadowsIntoLightTwoRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +115,13 @@
 		F5BA464C299741A985BBEDCE /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				2FDDA1216AD94ADBB15CA686 /* LavishlyYours-Regular.ttf */,
+				9BF4683B08EC4F10A591189E /* DeliusSwashCapsRegular.ttf */,
+				C3D715DEB007415AAFEE2DCF /* FleurDeLeahRegular.ttf */,
+				BC91A9FA903D4C08B92180EE /* IcebergRegular.ttf */,
+				9EEC8A417C3D45E0B4298354 /* InterRegular.ttf */,
+				AE0975E2E0FF46E18A2BE63C /* LavishlyYoursRegular.ttf */,
+				B5CBF9F1A0E546F5BEEB0EBF /* MetalManiaRegular.ttf */,
+				3FC4D2FB7AB04C8592C1AB46 /* ShadowsIntoLightTwoRegular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -171,7 +189,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				3EB5701244BB4D929A7FB15D /* LavishlyYours-Regular.ttf in Resources */,
+				6558CD1B46EB4F6BA671E170 /* DeliusSwashCapsRegular.ttf in Resources */,
+				6CE108B413234E6A80D1C33D /* FleurDeLeahRegular.ttf in Resources */,
+				362557F6E97D4A73B96BFD93 /* IcebergRegular.ttf in Resources */,
+				229E03B355874809A72FE2BC /* InterRegular.ttf in Resources */,
+				AFF97EE5A34740749023C345 /* LavishlyYoursRegular.ttf in Resources */,
+				708122027E6D4B7B9A0DFE79 /* MetalManiaRegular.ttf in Resources */,
+				76D9848B2B454C28BA7CB2EA /* ShadowsIntoLightTwoRegular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
