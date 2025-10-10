@@ -37,7 +37,7 @@ export const NavHeader: React.FC<NavHeaderProps> = ({ title, goBack }) => {
       <TouchableOpacity onPress={goBack} style={styles.leftBtn}>
         <Ionicons name='chevron-back-sharp' size={28} color={theme.secondaryColor} />
       </TouchableOpacity>
-      <Text style={[styles.title, theme.secondaryFont]}>{title}</Text>
+      <Text style={[styles.title, theme.primaryFont]}>{title}</Text>
       <View style={styles.rightPlaceholder} />
     </View>
   );

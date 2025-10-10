@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
     width: '90%'
   },
   boxStyle: {
-    backgroundColor: '#fff',
     height: 120,
     justifyContent: 'center'
   }

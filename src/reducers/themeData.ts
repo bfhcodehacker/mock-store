@@ -14,7 +14,6 @@ interface ThemeState {
   secondaryFont: ThemeText;
 }
 
-/*
 const initialThemeState: ThemeState = {
   primaryColor: '#00008B',
   primaryEndColor: '#6e70f3ff',
@@ -26,21 +25,6 @@ const initialThemeState: ThemeState = {
   secondaryFont: {
     color: '#00008B',
     fontFamily: appFonts.inter
-  }
-};
-*/
-
-const initialThemeState: ThemeState = {
-  primaryColor: '#c90076',
-  primaryEndColor: '#f1c232',
-  primaryFont: {
-    color: '#6a329f',
-    fontFamily: appFonts.cursive
-  },
-  secondaryColor: '#6fa8dc',
-  secondaryFont: {
-    color: '#000000',
-    fontFamily: appFonts.metal
   }
 };
 
