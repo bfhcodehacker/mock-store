@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { appFonts } from '../constants/fonts';
 
-interface ThemeText {
+export interface ThemeText {
   color: string;
   fontFamily: string;
 }
 
-interface ThemeState {
+export interface ThemeState {
   primaryColor: string;
   primaryEndColor: string;
   primaryFont: ThemeText;
@@ -14,7 +14,7 @@ interface ThemeState {
   secondaryFont: ThemeText;
 }
 
-const initialThemeState: ThemeState = {
+export const initialThemeState: ThemeState = {
   primaryColor: '#00008B',
   primaryEndColor: '#6e70f3ff',
   primaryFont: {
@@ -46,6 +46,9 @@ export const themeDataSlice = createSlice({
     },
     changeSeconaryFont: (state, action: PayloadAction<ThemeText>) => {
       state.secondaryFont = action.payload;
+    },
+    setNewTheme: (state, action: PayloadAction<ThemeState>) => {
+      return action.payload;
     }
   }
 });
@@ -55,7 +58,8 @@ export const {
   changePrimaryEndColor,
   changePrimaryFont,
   changeSeconaryFont,
-  changeSecondaryColor
+  changeSecondaryColor,
+  setNewTheme
 } = themeDataSlice.actions;
 
 export default themeDataSlice.reducer;

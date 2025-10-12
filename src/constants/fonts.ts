@@ -10,7 +10,7 @@ export const interFont = isIOS ? 'Inter-Regular' : 'InterRegular';
 export const metalManiaFont = isIOS ? 'MetalMania-Regular' : 'MetalManiaRegular';
 export const shadowsLightFont = isIOS ? 'ShadowsIntoLightTwo-Regular' : 'ShadowsIntoLightTwoRegular';
 
-export const appFonts = {
+export const appFonts: { [key: string]: string; }  = {
   cursive: cursiveFont,
   delius: deliusFont,
   fleurDeLeah: fleurDeLeahFont,
@@ -19,3 +19,13 @@ export const appFonts = {
   metal: metalManiaFont,
   shadows: shadowsLightFont
 };
+
+export const appFontsNames = [
+  'cursive',
+  'delius',
+  'fleurDeLeah',
+  'iceberg',
+  'inter',
+  'metal',
+  'shadows'
+];
