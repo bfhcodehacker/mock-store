@@ -16,6 +16,8 @@ import { Product } from '../types/product';
 import { ATCModal } from '../components/ATCModal';
 import { HomeHeader } from '../components/HomeHeader';
 import { useSavedCredentials } from '../lib/authHelpers';
+import { setNewTheme } from '../reducers/themeData';
+import { getThemes } from '../lib/themeHelper';
 
 const titleBackground = require('../assets/images/home-title.jpeg');
 
@@ -27,7 +29,16 @@ export const HomeScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const [ productAddedToCart, setProductAddedToCart ] = useState<Product | null>(null);
 
+ const fetchThemes = async () => {
+    const savedThemes = await getThemes();
+    if (savedThemes.length) {
+      const newTheme = savedThemes[0];
+      dispatch(setNewTheme(newTheme));
+    }
+  }
+
   useEffect(() => {
+    fetchThemes();
     if (!featuredCategories?.length) {
       dispatch(fetchCategories());
       dispatch(fetchProducts());

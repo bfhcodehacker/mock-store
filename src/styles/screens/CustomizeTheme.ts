@@ -27,7 +27,8 @@ export const styles = StyleSheet.create({
   },
   editTitle: {
     fontSize: 20,
-    marginRight: 20
+    marginRight: 20,
+    textTransform: 'capitalize'
   },
   editColor: {
     height: 20,
@@ -64,5 +65,40 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: '#00008B',
     textAlign: 'center'
+  },
+  savedThemesBox: {
+    borderWidth: 1,
+    marginHorizontal: 20,
+    padding: 5
+  },
+  savedThemesHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  savedThemesTitle: {
+    fontSize: 20
+  },
+  savedThemeBox: {
+    paddingHorizontal: 10
+  },
+  savedThemeRow: {
+    paddingVertical: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  savedThemeLeft: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  savedThemeText: {
+    fontSize: 16,
+    marginRight: 5
+  },
+  savedThemeColor: {
+    height: 16,
+    width: 30,
+    borderWidth: 2
   }
 });
