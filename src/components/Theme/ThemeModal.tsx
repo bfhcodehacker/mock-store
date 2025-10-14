@@ -1,10 +1,10 @@
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { ThemeState, ThemeText } from "../reducers/themeData";
-import { styles } from "../styles/components/ThemeModal";
-import { ThemePreview } from "../components/ThemePreview";
+import { ThemeState, ThemeText } from "../../reducers/themeData";
+import { styles } from "../../styles/components/ThemeModal";
+import { ThemePreview } from "./ThemePreview";
 import ColorPicker from 'react-native-wheel-color-picker';
 import { useState } from 'react';
-import { appFonts, appFontsNames } from '../constants/fonts';
+import { appFonts, appFontsNames } from '../../constants/fonts';
  
 interface ThemeModalProps {
   theme: ThemeState;

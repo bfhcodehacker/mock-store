@@ -1,1 +1,2 @@
 export const USER_CREDENTIALS_KEY = 'USER_CREDENTIALS_KEY';
+export const THEME_KEY = 'THEME_KEY';

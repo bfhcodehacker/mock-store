@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
-import { ThemeText } from '../reducers/themeData';
-import { GradientWrapper } from './GradientWrapper';
-import { styles } from '../styles/components/ThemePreview';
+import { ThemeText } from '../../reducers/themeData';
+import { GradientWrapper } from '../GradientWrapper';
+import { styles } from '../../styles/components/ThemePreview';
 
 interface ThemePreviewProps {
   primaryColor: string;
@@ -34,7 +34,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
         </View>
       </GradientWrapper>
       <Text style={styles.infoText}>
-        <Text style={styles.bold}>PrimaryColorEnd</Text> is bottom of gradient
+        <Text style={styles.bold}>PrimaryEndColor</Text> is bottom of gradient
       </Text>
     </View>
   );

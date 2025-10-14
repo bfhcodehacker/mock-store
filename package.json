@@ -11,6 +11,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/geolocation": "^3.4.0",
     "@react-native-community/hooks": "^100.1.0",
     "@react-native-cookies/cookies": "^6.2.1",
