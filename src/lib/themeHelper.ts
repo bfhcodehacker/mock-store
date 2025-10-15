@@ -33,8 +33,9 @@ export const getThemes = async () => {
 }
 
 export const updateSavedThemes = async (themes: ThemeState[]) => {
+  const newThemes = themes.filter(theme => !theme.initialState);
   try {
-    await AsyncStorage.setItem(THEME_KEY, JSON.stringify(themes));
+    await AsyncStorage.setItem(THEME_KEY, JSON.stringify(newThemes));
   } catch (e) {
     console.log('error saving theme');
   }
