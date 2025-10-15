@@ -7,6 +7,7 @@ export interface ThemeText {
 }
 
 export interface ThemeState {
+  initialState?: string;
   primaryColor: string;
   primaryEndColor: string;
   primaryFont: ThemeText;
@@ -15,6 +16,7 @@ export interface ThemeState {
 }
 
 export const initialThemeState: ThemeState = {
+  initialState: 'true',
   primaryColor: '#00008B',
   primaryEndColor: '#6e70f3ff',
   primaryFont: {
