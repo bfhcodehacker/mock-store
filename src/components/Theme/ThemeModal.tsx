@@ -22,7 +22,7 @@ export const ThemeModal: React.FC<ThemeModalProps> = ({
   let startFont = '';
   if (typeof value === 'string') {
     startColor = value;
-  } else {
+  } else if (value) {
     startColor = value.color;
     startFont = value.fontFamily;
   }

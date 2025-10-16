@@ -75,7 +75,7 @@ export const HomeScreen = () => {
         <HomeHeader />
         <View style={HomeStyles.titleImageBox}>
           <Image source={titleBackground} resizeMode='contain' style={HomeStyles.titleImage} />
-          <Text style={HomeStyles.titleText}>Mock App</Text>
+          <Text style={HomeStyles.titleText} testID='home-title'>Mock App</Text>
         </View>
         {!!featuredCategories.length ? (
           <FeatureCategories
