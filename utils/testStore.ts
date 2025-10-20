@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
 import { productApi } from "../src/reducers/productData";
 import storeDataReducer from "../src/reducers/storeData";
 import cartDataReducer from '../src/reducers/cartData';
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   account: accountReducer,
   theme: themeReducer
 });
-
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({

@@ -13,6 +13,26 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   store?: AppStore
 }
 
+export const testStore = setupStore({});
+
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = testStore,
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) {
+  function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+    return <Provider store={store}>{children}</Provider>
+  }
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+}
+
+/*
+use the function below to preload a store state when rendering for tests
+
 export function renderWithProviders(
   ui: React.ReactElement,
   {
@@ -27,3 +47,4 @@ export function renderWithProviders(
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }
+*/

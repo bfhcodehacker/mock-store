@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { GradientWrapper } from '../components/GradientWrapper';
 import { useAppSelector } from '../app/hooks';
 import { FeaturedCategory } from '../components/FeaturedCategory';
@@ -12,6 +12,7 @@ import { styles } from '../styles/screens/Categories';
 export const CategoriesScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const categories = useAppSelector((state) => state.storeData.categories);
+  const theme = useAppSelector(state => state.theme);
 
   const onPress = (category: Category) => () => {
     navigation.navigate('ProductIndex', { category });
@@ -20,13 +21,15 @@ export const CategoriesScreen = () => {
   return (
     <GradientWrapper>
       <ScrollView style={styles.scrollView}>
+        <Text style={[styles.title, theme.primaryFont]}>Shop Our Categories!</Text>
         <View style={styles.container}>
-          {categories.map(category => {
+          {categories.map((category, index) => {
             return <FeaturedCategory
               onPress={onPress}
               category={category}
               key={category.slug}
               boxStyle={styles.boxStyle}
+              testId={'category-' + index}
             />
           })}
         </View>

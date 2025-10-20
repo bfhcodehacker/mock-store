@@ -31,7 +31,10 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
     const imageSrc = product.thumbnail ? { uri: product.thumbnail } : defaultImage;
 
     return (
-      <View style={[styles.productBox, { borderColor: theme.secondaryColor }, boxStyle]}>
+      <View
+        style={[styles.productBox, { borderColor: theme.secondaryColor }, boxStyle]}
+        testID={'product-' + item.index}  
+      >
         <TouchableOpacity onPress={navigateToProduct(product)} style={styles.navLink}>
           <Image
             source={imageSrc}
@@ -48,6 +51,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
         <TouchableOpacity
           onPress={addToCart(product)}
           style={[styles.addToCartBtn, { backgroundColor: theme.primaryColor }]}
+          testID={'product-btn-' + item.index}
         >
           <Text style={[styles.addToCartText, theme.primaryFont]}>Add To Cart</Text>
         </TouchableOpacity>
@@ -57,7 +61,9 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({
 
   return (
     <View style={[styles.container, containerStyle]}>
-      <Text style={[styles.title, theme.primaryFont, titleStyle]}>{title}</Text>
+      <Text style={[styles.title, theme.primaryFont, titleStyle]} testID='products-title'>
+        {title}
+      </Text>
       <View style={styles.productContainer}>
         <FlatList
           data={products}
