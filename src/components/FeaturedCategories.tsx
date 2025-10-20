@@ -16,14 +16,23 @@ export const FeatureCategories: React.FC<FeaturedCategoriesProps> = ({ categorie
   return (
     <View style={styles.outerContainer}>
       <View style={styles.header}>
-        <Text style={[styles.titleText, theme.primaryFont]}>Featured Categories</Text>
+        <Text style={[styles.titleText, theme.primaryFont]} testID='categories-title'>
+          Featured Categories
+        </Text>
         <TouchableOpacity onPress={onShopAllPress} style={styles.shopAllLink}>
           <Text style={[styles.shopAllText, theme.primaryFont]}>{'Shop All >'}</Text>
         </TouchableOpacity>
       </View>
       <View style={[styles.container, { borderColor: theme.secondaryColor }]}>
-        {categories.map(category => {
-          return <FeaturedCategory onPress={onPress} category={category} key={category.slug} />
+        {categories.map((category, index) => {
+          return (
+            <FeaturedCategory
+              onPress={onPress}
+              category={category}
+              key={category.slug}
+              testId={'category-' + index}
+            />
+          );
         })}
       </View>
     </View>

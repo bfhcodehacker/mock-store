@@ -1,29 +1,5 @@
+import { server } from './__mocks__/server.js'
 import 'react-native-gesture-handler/jestSetup';
-
-/*
-jest.mock('react-native', () => {
-  const StyleSheet = {
-    create: (styles: any) => styles
-  };
-  const Platform = {
-    OS: 'android',
-    select: () => null
-  };
-
-  return {
-    StyleSheet,
-    Platform,
-  }
-});
-
-
-jest.mock('react-native/Libraries/Utilities/Platform', () => {
-  return {
-    OS: 'android', // or 'ios'
-    select: () => null
-  }
-});
-*/
 
 jest.mock('react-native-keychain', () => ({
   setGenericPassword: jest.fn(() => Promise.resolve()),
@@ -67,6 +43,14 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
+// Establish API mocking before all tests.
+beforeAll(() => server.listen())
 
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers())
+
+// Clean up after the tests are finished.
+afterAll(() => server.close())
 
 

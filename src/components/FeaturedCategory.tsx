@@ -8,15 +8,19 @@ import { useAppSelector } from "../app/hooks";
 interface FeaturedCategoryProps {
   category: Category;
   onPress: (category: Category) => () => void;
+  testId: string;
   boxStyle?: ViewStyle;
 }
 
-export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({boxStyle, category, onPress}) => {
+export const FeaturedCategory: React.FC<FeaturedCategoryProps> = ({
+  boxStyle, category, onPress, testId
+}) => {
   const theme = useAppSelector(state => state.theme);
   return (
     <TouchableOpacity
       style={[styles.box, {backgroundColor: theme.secondaryColor}, boxStyle]}
       onPress={onPress(category)}
+      testID={testId}
     >
       <Ionicons
         name={categoryIcons[category?.slug || 'default']}
