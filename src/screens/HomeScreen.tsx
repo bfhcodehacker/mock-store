@@ -25,6 +25,7 @@ export const HomeScreen = () => {
   const dispatch = useAppDispatch();
   const featuredCategories = useAppSelector(state => state.storeData.featuredCategories);
   const featuredProducts = useAppSelector(state => state.storeData.featuredProducts);
+  const status = useAppSelector(state => state.storeData.status);
   const isLoggedIn = useAppSelector(state => state.account.isLoggedIn);
   const navigation = useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const [ productAddedToCart, setProductAddedToCart ] = useState<Product | null>(null);
@@ -84,7 +85,11 @@ export const HomeScreen = () => {
             onShopAllPress={onShopAllPress}
           />
         ) : (
-          <ActivityIndicator />
+          status === 'failed' ? (
+            <Text testID={'categories-failed'}>Failed to load categories</Text>
+          ) : (
+            <ActivityIndicator />
+          )
         )}
         {!!featuredProducts.length && (
           <FeaturedProducts

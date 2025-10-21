@@ -13,6 +13,7 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   store?: AppStore
 }
 
+/*
 export const testStore = setupStore({});
 
 export function renderWithProviders(
@@ -29,9 +30,7 @@ export function renderWithProviders(
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }
-
-/*
-use the function below to preload a store state when rendering for tests
+*/
 
 export function renderWithProviders(
   ui: React.ReactElement,
@@ -47,4 +46,16 @@ export function renderWithProviders(
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }
-*/
+
+export function setupTestStore() {
+  const refObj: any = {};
+  beforeEach(() => {
+    const store = setupStore({});
+    refObj.store = store;
+    refObj.wrapper = function Wrapper({ children }: any) {
+      return <Provider store={store}>{children}</Provider>
+    }
+  });
+
+  return refObj;
+}
