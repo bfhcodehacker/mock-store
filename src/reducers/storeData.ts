@@ -7,24 +7,16 @@ import { Product } from "../types/product";
 export const fetchCategories = createAsyncThunk(
   'categories/fetchCategories',
   async () => {
-    try {
-      const response = await axios.get('https://dummyjson.com/products/categories');
-      return response.data;
-    } catch (err) {
-      return 'Error loading categories';
-    }
+    const response = await axios.get('https://dummyjson.com/products/categories');
+    return response.data;
   }
 );
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
-    try {
-      const response = await axios.get('https://dummyjson.com/products');
-      return response.data;
-    } catch (err) {
-      return 'Error fetching products';
-    }
+    const response = await axios.get('https://dummyjson.com/products');
+    return response.data;
   }
 )
 

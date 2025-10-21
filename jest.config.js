@@ -4,5 +4,8 @@ module.exports = {
     'node_modules/(?!(jest-)?react-native|@react-native|immer|msw|until-async|react-redux|@react-navigation|@react-native-community|@testing-library)',
   ],
   setupFilesAfterEnv: ['./jest-setup.ts'],
-  moduleFileExtensions: ["ts", "tsx", "js"]
+  moduleFileExtensions: ["ts", "tsx", "js"],
+  moduleNameMapper: {
+    "^(\\.\\.?\\/.+)\\.js$": "$1"
+  },
 };
