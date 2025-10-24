@@ -20,10 +20,11 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 24,
-    color: 'black'
+    color: 'black',
+    width: '80%'
   },
   leftBtn: {
-    marginBottom: 4
+    marginBottom: 0
   },
   rightPlaceholder: {
     width: 28
@@ -37,7 +38,12 @@ export const NavHeader: React.FC<NavHeaderProps> = ({ title, goBack }) => {
       <TouchableOpacity onPress={goBack} style={styles.leftBtn}>
         <Ionicons name='chevron-back-sharp' size={28} color={theme.secondaryColor} />
       </TouchableOpacity>
-      <Text style={[styles.title, theme.primaryFont]}>{title}</Text>
+      <Text
+        style={[styles.title, theme.primaryFont]}
+        numberOfLines={1}
+      >
+        {title}
+      </Text>
       <View style={styles.rightPlaceholder} />
     </View>
   );

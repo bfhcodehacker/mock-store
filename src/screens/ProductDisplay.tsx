@@ -39,6 +39,8 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
     setShowAddedToCartModal(false);
   }
 
+  console.log('pdp', data, isLoading)
+
   return (
     <GradientWrapper>
      {isLoading ? (
@@ -77,6 +79,7 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
               <Text style={styles.noProductsText}>Sorry, we were unable to load product data</Text>
             </View>
           )}
+ 
         </ScrollView>
       )}
       {showAddedToCartModal && (

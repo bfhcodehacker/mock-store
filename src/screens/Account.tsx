@@ -83,7 +83,7 @@ export const AccountScreen: React.FC = () => {
 
   return (
     <GradientWrapper>
-      <ScrollView>
+      <ScrollView style={styles.scrollview}>
         <View style={[styles.profileBox, { backgroundColor: theme.secondaryColor} ]}>
           <View style={styles.profileTop}>
             <Image source={profileImage} style={styles.profileImage} resizeMode='cover'/>

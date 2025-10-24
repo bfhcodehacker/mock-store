@@ -5,7 +5,7 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 
 interface PDPDetailsProps {
   title: string;
-  text: string;
+  text?: string;
 }
 
 export const PDPDetails: React.FC<PDPDetailsProps> = ({ title, text }) => {

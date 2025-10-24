@@ -25,5 +25,11 @@ export const HomeStyles = StyleSheet.create({
     fontSize: 60,
     paddingTop: '10%',
     position: 'absolute'
+  },
+  featuredProductsBox: {
+    marginTop: 10,
+    marginHorizontal: '5%',
+    width: '90%',
+    marginBottom: 20
   }
 });

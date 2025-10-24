@@ -53,5 +53,5 @@ export interface Review {
 
 export interface ProductDetail {
   title: string;
-  text?: any;
+  text?: string;
 }
