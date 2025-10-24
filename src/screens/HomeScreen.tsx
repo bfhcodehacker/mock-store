@@ -92,12 +92,14 @@ export const HomeScreen = () => {
           )
         )}
         {!!featuredProducts.length && (
-          <FeaturedProducts
-            title={'Featured Products'}
-            addToCart={addToCartPress}
-            products={featuredProducts}
-            navigateToProduct={onProductNavigation}
-          />
+          <View style={HomeStyles.featuredProductsBox}>
+            <FeaturedProducts
+              title={'Featured Products'}
+              addToCart={addToCartPress}
+              products={featuredProducts}
+              navigateToProduct={onProductNavigation}
+            />
+          </View>
         )}
       </ScrollView>
       {!!productAddedToCart && (

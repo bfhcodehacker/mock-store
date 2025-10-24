@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     height: '100%',
-    width: '100%',
+    width: '100%'
   },
   productBox: {
     marginBottom: 100
@@ -38,7 +38,8 @@ export const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 5,
     backgroundColor: '#fff',
-    padding: 10
+    padding: 10,
+    marginBottom: 100
   },
   infoRow: {
     width: '100%',
@@ -63,6 +64,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10
   },
   addToCartBtn: {
+    zIndex: 5,
     position: 'absolute',
     width: '98%',
     height: 60,
@@ -70,9 +72,7 @@ export const styles = StyleSheet.create({
     margin: '1%',
     marginBottom: 5,
     borderRadius: 5,
-    borderWidth: 2,
-    borderColor: '#00008B',
-    bottom: 0,
+    bottom: 100,
     left: 0,
     right: 0,
     justifyContent: 'center',

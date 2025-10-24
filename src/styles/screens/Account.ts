@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30
   },
+  scrollview: {
+    width: '100%',
+    height: '100%',
+    marginBottom: 100
+  },
   profileBox: {
     margin: 20,
     padding: 20,
@@ -60,7 +65,7 @@ export const styles = StyleSheet.create({
     fontSize: 16
   },
   signOutBtn: {
-    marginTop: 50,
+    marginTop: 10,
     marginHorizontal: 20,
     marginBottom: 50,
     borderRadius: 5,

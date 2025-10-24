@@ -28,15 +28,3 @@ export const ThemeEditOption: React.FC<ThemeEditOptionProps> = ({
     </View>
   );
 }
-
-/*
-        <View style={styles.editRow}>
-          <View style={styles.editBox}>
-            <Text style={styles.editTitle}>PrimaryFont:</Text>
-            <Text style={[styles.editFont, primaryFont]}>PrimaryFont</Text>
-          </View>
-          <TouchableOpacity onPress={changeOption('primaryFont')}>
-            <Text style={styles.editBtn}>Edit</Text>
-          </TouchableOpacity>
-        </View>
-        */

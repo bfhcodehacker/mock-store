@@ -80,7 +80,7 @@ export const CartScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.main}>
+    <ScrollView style={styles.main} contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.innerContainer}>
         {items.length ? (
           <View>
@@ -107,18 +107,20 @@ export const CartScreen = () => {
             </TouchableOpacity>
           </View>
         )}
+        {!!featuredProducts.length && (
+          <View style={styles.featuredProductsBox}>
+            <FeaturedProducts
+              title={'You Might Also Like'}
+              addToCart={addToCartPress}
+              navigateToProduct={navigateToProduct}
+              products={featuredProducts}
+              titleStyle={{color: theme.primaryColor}}
+              descStyle={{color: theme.primaryColor}}
+              boxStyle={{borderColor: theme.primaryColor}}
+            />
+          </View>
+        )}
       </View>
-      {!!featuredProducts.length && (
-        <FeaturedProducts
-          title={'You Might Also Like'}
-          addToCart={addToCartPress}
-          navigateToProduct={navigateToProduct}
-          products={featuredProducts}
-          titleStyle={{color: theme.primaryColor}}
-          descStyle={{color: theme.primaryColor}}
-          boxStyle={{borderColor: theme.primaryColor}}
-        />
-      )}
       {!!productAddedToCart && (
         <ATCModal onClose={closeATCModal} product={productAddedToCart} />
       )}

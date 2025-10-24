@@ -26,7 +26,7 @@ const ProductReviews: FC<ProductReviewProps> = ({ reviews }) => {
         <View style={styles.reviewBox}>
           {reviews.map(review => {
             return (
-              <View style={styles.reviewData}>
+              <View style={styles.reviewData} key={review.reviewerName}>
                 <View style={styles.infoBox}>
                   <View style={styles.infoLeft}>
                     <Text style={styles.name}>{review.reviewerName}</Text>

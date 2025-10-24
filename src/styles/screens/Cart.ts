@@ -1,14 +1,14 @@
 import { StyleSheet } from "react-native";
+import { FeaturedProducts } from "../../components/FeaturedProducts";
 
 export const styles = StyleSheet.create({
   main: {
-    height: '100%',
-    width: '100%',
+   flex: 1,
     backgroundColor: '#d3d3d3'
   },
   innerContainer: {
-    width: '90%',
-    margin: '5%',
+    flex: 1,
+    margin: 20,
     justifyContent: 'space-between'
   },
   cartHeader: {
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     color: '#00008B'
   },
   emptyCart: {
-    marginTop: 200,
+    marginTop: 100,
     alignItems: 'center'
   },
   emptyCartText: {
@@ -43,5 +43,8 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: '#fff',
     textAlign: 'center'
+  },
+  featuredProductsBox: {
+    marginVertical: 20
   }
 });
