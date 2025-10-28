@@ -7,11 +7,14 @@ import { useAppSelector } from '../app/hooks';
 interface ProductIndexProductProps {
   product: Product;
   onPress: (product: Product) => () => void;
+  index: number;
 }
 
 const defaultImage = require('../assets/images/default-product.webp');
 
-export const ProductIndexProduct: React.FC<ProductIndexProductProps> = ({ product, onPress }) => {
+export const ProductIndexProduct: React.FC<ProductIndexProductProps> = ({
+  index, product, onPress
+}) => {
   const imageSrc = product?.thumbnail ? { uri: product.thumbnail } : defaultImage;
   const theme = useAppSelector(state => state.theme);
 
@@ -19,6 +22,7 @@ export const ProductIndexProduct: React.FC<ProductIndexProductProps> = ({ produc
     <TouchableOpacity
       style={[styles.productBox, { backgroundColor: theme.secondaryColor }]}
       onPress={onPress(product)}
+      testID={'product-' + index}
     >
       <Image source={imageSrc} style={styles.thumbnail} resizeMode='cover' />
       <View style={styles.productTextBox}>

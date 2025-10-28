@@ -5,7 +5,7 @@ import cartDataReducer from '../src/reducers/cartData';
 import accountReducer from "../src/reducers/accountData";
 import themeReducer from "../src/reducers/themeData";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   storeData: storeDataReducer,
   [productApi.reducerPath]: productApi.reducer,
   cartData: cartDataReducer,
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
 export const setupStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware),
     preloadedState
   })
 }

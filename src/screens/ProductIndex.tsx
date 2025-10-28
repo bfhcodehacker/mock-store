@@ -35,12 +35,20 @@ export const ProductIndexScreen: React.FC<ProductIndexProps> = ({ route }) => {
       ) : (
         <ScrollView style={styles.scrollview}>
           {data?.products?.length ? (
-            data.products.map(product => {
-              return <ProductIndexProduct product={product} key={product.sku} onPress={onProductPress} />
+            data.products.map((product, index) => {
+              return <ProductIndexProduct
+                index={index}
+                product={product}
+                key={product.sku}
+                onPress={onProductPress}
+              />
             })
           ) : (
             <View style={styles.loading}>
-              <Text style={[styles.noProductsText, theme.primaryFont]}>
+              <Text
+                style={[styles.noProductsText, theme.primaryFont]}
+                testID={'product-index-error'}  
+              >
                 Sorry, we were unable to load product data
               </Text>
             </View>
