@@ -39,8 +39,6 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
     setShowAddedToCartModal(false);
   }
 
-  console.log('pdp', data, isLoading)
-
   return (
     <GradientWrapper>
      {isLoading ? (
@@ -50,7 +48,7 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
       ) : (
         <ScrollView style={styles.container}>
           {data ? (
-            <View style={styles.productBox}>
+            <View style={styles.productBox} testID={'pdp-product-data'}>
               <View style={[styles.productContainer, { backgroundColor: theme.secondaryColor}]}>
                 <View style={styles.carouselContainer}>
                   <ImageCarousel images={data.images} />
@@ -64,7 +62,7 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
                   <ProductReviews reviews={data.reviews} />
                 )}
                 {pdpDetails.length && (
-                  <View>
+                  <View testID={'pdp-details'}>
                     <Text style={styles.productDetailsTitle}>Product Details</Text>
                     {pdpDetails.map(detail => {
                       return <PDPDetails title={detail.title} text={detail.text} key={detail.title}/>
@@ -76,7 +74,12 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
             </View>
           ) : (
             <View style={styles.loading}>
-              <Text style={styles.noProductsText}>Sorry, we were unable to load product data</Text>
+              <Text
+                style={styles.noProductsText}
+                testID={'pdp-no-product'}
+              >
+                Sorry, we were unable to load product data
+              </Text>
             </View>
           )}
  
@@ -89,8 +92,10 @@ export const ProductDisplayScreen: React.FC<ProductDisplayProps> = ({ route }) =
         <TouchableOpacity
           onPress={addProductToCart}
           style={[styles.addToCartBtn, { backgroundColor: theme.primaryColor}]}
+          testID={'pdp-atc-btn'}  
         >
-          <Text style={[styles.addToCartText, theme.primaryFont]}>Add To Cart</Text>
+          <Text
+            style={[styles.addToCartText, theme.primaryFont]}>Add To Cart</Text>
         </TouchableOpacity>
       )}
     </GradientWrapper>

@@ -11,7 +11,7 @@ interface ATCModalProps {
 export const ATCModal: React.FC<ATCModalProps> = ({ product, onClose }) => {
   const theme = useAppSelector(state => state.theme);
   return (
-    <View style={styles.modalBackdrop}>
+    <View style={styles.modalBackdrop} testID={'atc-modal'}>
       <View style={styles.addedToCartModal}>
         <Text style={styles.addedToCartModalText}>Item added to cart!</Text>
         {!!product?.thumbnail && (
