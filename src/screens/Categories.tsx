@@ -21,7 +21,12 @@ export const CategoriesScreen = () => {
   return (
     <GradientWrapper>
       <ScrollView style={styles.scrollView}>
-        <Text style={[styles.title, theme.primaryFont]}>Shop Our Categories!</Text>
+        <Text
+          style={[styles.title, theme.primaryFont]}
+          testID='categories-title'  
+        >
+          Shop Our Categories!
+        </Text>
         <View style={styles.container}>
           {categories.map((category, index) => {
             return <FeaturedCategory

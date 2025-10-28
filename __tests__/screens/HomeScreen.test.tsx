@@ -15,7 +15,7 @@ test('home screen renders', async () => {
 
 test('featured categories render', async () => {
   const expectedTitle = 'Featured Categories';
-  render(<HomeScreen />, { wrapper: storeRef.wrapper});
+  render(<HomeScreen />, { wrapper: storeRef.wrapper });
   const title = await screen.findByTestId('categories-title');
   expect(title).toHaveTextContent(expectedTitle);
   const firstCategory = await screen.findByTestId('category-1');
@@ -24,14 +24,13 @@ test('featured categories render', async () => {
 
 test('featured products section renders', async () => {
   const expectedTitle = 'Featured Products';
-  const state = storeRef.store.getState();
-  render(<HomeScreen />, { wrapper: storeRef.wrapper});
+  render(<HomeScreen />, { wrapper: storeRef.wrapper });
   const title = await screen.findByTestId('products-title');
   expect(title).toHaveTextContent(expectedTitle);
 });
 
 test('featured products render and can add to cart', async () => {
-  render(<HomeScreen />, { wrapper: storeRef.wrapper});
+  render(<HomeScreen />, { wrapper: storeRef.wrapper });
   const firstProduct = await screen.findByTestId('product-1');
   expect(firstProduct).toBeOnTheScreen();
   const productBtn = await screen.findByTestId('product-btn-1');
@@ -48,7 +47,7 @@ test('failure to load home categories', async () => {
       return HttpResponse.json([], { status: 500 });
     })
   );
-  render(<HomeScreen />, { wrapper: storeRef.wrapper});
+  render(<HomeScreen />, { wrapper: storeRef.wrapper });
   const loadingIndicator = await screen.findByTestId('categories-failed');
   expect(loadingIndicator).toBeDefined();
 });
