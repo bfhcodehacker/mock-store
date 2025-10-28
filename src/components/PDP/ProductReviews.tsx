@@ -17,7 +17,7 @@ const ProductReviews: FC<ProductReviewProps> = ({ reviews }) => {
   }
 
   return (
-    <View style={styles.reviewContainer}>
+    <View style={styles.reviewContainer} testID={'product-reviews'}>
       <TouchableOpacity style={styles.reviewHeader} onPress={toggleShowReviews}>
         <Text style={styles.reviewHeaderText}>Reviews</Text>
         <Ionicons name={showReviews ? 'chevron-up' : 'chevron-down'} size={20} />

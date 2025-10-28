@@ -30,9 +30,6 @@ test('product index screen renders', async () => {
   expect(product).toBeDefined();
 });
 
-// Sorry, we were unable to load product data
-// 'product-index-error'
-
 test('product index request error', async () => {
   server.use(
     http.get('https://dummyjson.com/products/category/smartphones', async () => {
